@@ -1,0 +1,35 @@
+/* 80% of screen and the footer is down */
+main {
+  min-height: 80vh;
+  background-color: #6dc4ae;
+
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  /* padding: 0.5rem 0; */
+  padding: 1.5rem 0;
+}
+
+/* .row {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+} */
+
+h3 {
+  padding: 1rem 0;
+}
+
+/*Css for carousel*/
+.rating span {
+  margin: 0.1rem;
+}
