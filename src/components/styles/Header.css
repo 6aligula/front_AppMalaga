@@ -1,0 +1,16 @@
+/* Header.css */
+.navbar-brand span {
+    display: block; /* Esto hará que cada span se muestre en su propia línea */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* La primera línea */
+.navbar-brand span:first-child {
+    font-weight: bold; /* Cambia el peso de la fuente si es necesario */
+}
+
+/* La segunda línea */
+.navbar-brand span:last-child {
+    font-weight: lighter; /* Cambia el peso de la fuente si es necesario */
+    font-size: 0.8em; /* Reduce el tamaño de la fuente si es necesario */
+}

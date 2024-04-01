@@ -1,36 +1,29 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import Header from '../components/Header';
+//import Sidebar from '../components/Sidebar'; // Suponiendo que tienes un componente Sidebar
+//import MainContent from '../components/MainContent'; // Suponiendo que tienes un componente para el contenido principal
+//import Advertising from '../components/Advertising'; // Suponiendo que tienes un componente para la publicidad
 import Footer from "../components/Footer";
-import foto from "../img/malaga.png"
-import Mapa from '../components/Map';
-
+//import './HomeScreen.css'; // No olvides incluir tus estilos
 
 const HomeScreen = () => {
-    const dispatch = useDispatch();
-
-    const location = useLocation();
-    let keyword = location.search;
-    //console.log('keyword in home', keyword);
-
-    // useEffect(() => {
-    //     dispatch(listProducts(keyword))
-
-    // }, [dispatch, keyword])
+    // Puedes utilizar useDispatch y useSelector aquí si necesitas gestionar el estado de Redux
 
     return (
         <div>
-            <h1>Ultimos noticias </h1>
-            <p>Aqui podemos meter el mapa</p>
-            <Mapa />
-            {/* <img src={foto} alt="Malaga" style={{ width: '840px', height: '420px' }} /> */}
-
+            <Row className="mx-0">
+                <Col md={3} className="px-0">
+                    {/* <Sidebar /> */}
+                </Col>
+                {/* <Col md={9} className="px-0">
+                    <MainContent />
+                    <Advertising />
+                </Col> */}
+            </Row>
             <Footer />
         </div>
-    )
+    );
 }
 
-export default HomeScreen
+export default HomeScreen;
