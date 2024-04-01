@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Header from '../components/Header';
-//import Sidebar from '../components/Sidebar'; // Suponiendo que tienes un componente Sidebar
+import Sidebar from '../components/Sidebar';
 //import MainContent from '../components/MainContent'; // Suponiendo que tienes un componente para el contenido principal
 //import Advertising from '../components/Advertising'; // Suponiendo que tienes un componente para la publicidad
 import Footer from "../components/Footer";
@@ -14,7 +13,7 @@ const HomeScreen = () => {
         <div>
             <Row className="mx-0">
                 <Col md={3} className="px-0">
-                    {/* <Sidebar /> */}
+                    <Sidebar />
                 </Col>
                 {/* <Col md={9} className="px-0">
                     <MainContent />
