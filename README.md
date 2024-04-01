@@ -1,6 +1,6 @@
 # Frontend React
 
-Este proyecto es el frontend de una aplicación React, configurada para ejecutarse dentro de un contenedor Docker.
+Este proyecto es el frontend de una aplicación React, configurada para ejecutarse dentro de un contenedor Docker. La rama geoPlot Contiene el codigo necesario para comunicarse con el backend y dibujar las parcelas en el front.
 
 ## Dockerización
 
