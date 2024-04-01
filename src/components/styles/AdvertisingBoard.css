@@ -1,0 +1,13 @@
+/* AdvertisingBoard.css */
+.advertising-board {
+    padding: 20px;
+    border-left: 1px solid #ddd; /* Línea divisoria como en el wireframe */
+}
+
+.advertising-board h3 {
+    margin-bottom: 20px; /* Espacio después del título */
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Un poco de sombra para las tarjetas */
+}
