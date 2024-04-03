@@ -3,7 +3,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 import Sidebar from '../components/Sidebar';
 //import MainContent from '../components/MainContent'; // Suponiendo que tienes un componente para el contenido principal
 import AdvertisingBoard from '../components/AdvertisingBoard';
-import Footer from "../components/Footer";
+import HistorySection from "../components/HistorySection";
 import foto from "../img/campo.webp";
 
 /*
@@ -27,7 +27,8 @@ const HomeScreen = () => {
                     <Sidebar />
                 </Col>
                 <Col xl={6} lg={8} md={12}>
-                    <img src={foto} alt="Malaga" style={{ width: '100%', height: 'auto' }} />
+                    <img src={foto} alt="Malaga" style={{ width: '100%', height: 'auto', marginBottom: '20px'  }} />
+                    <HistorySection/>
                 </Col>
                 <Col xl={3} lg={12} md={12}>
                     <AdvertisingBoard advertisements={advertisements} />

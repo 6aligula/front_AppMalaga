@@ -1,0 +1,14 @@
+/* HistorySection.css */
+.history-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* Usa el color de fondo que prefieras */
+    border-top: 1px solid #dcdcdc; /* Si necesitas una línea de separación */
+}
+
+.history-section h2 {
+    margin-bottom: 15px;
+}
+
+.history-section p {
+    /* Estilos para el párrafo */
+}
