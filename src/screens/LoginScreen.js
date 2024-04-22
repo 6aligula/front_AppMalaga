@@ -36,47 +36,50 @@ const LoginScreen = () => {
     }
 
     return (
-        <FormContainer >
-            <h1>Iniciar Sesión</h1>
+        <>
 
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />}
+            <FormContainer >
+                <h1>Iniciar Sesión</h1>
 
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId='email'>
-                    <Form.Label>Dirección de correo electrónico</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Introduzca email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    >
+                {error && <Message variant='danger'>{error}</Message>}
+                {loading && <Loader />}
 
-                    </Form.Control>
-                </Form.Group>
+                <Form onSubmit={submitHandler}>
+                    <Form.Group controlId='email'>
+                        <Form.Label>Dirección de correo electrónico</Form.Label>
+                        <Form.Control
+                            type='email'
+                            placeholder='Introduzca email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        >
 
-                <Form.Group controlId='password' className='py-3'>
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Introduzca contraseña'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
+                        </Form.Control>
+                    </Form.Group>
 
-                <Button type='submit' variant='primary'> Iniciar Sesión</Button>
+                    <Form.Group controlId='password' className='py-3'>
+                        <Form.Label>Contraseña</Form.Label>
+                        <Form.Control
+                            type='password'
+                            placeholder='Introduzca contraseña'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
 
-            </Form>
+                    <Button type='submit' variant='primary'> Iniciar Sesión</Button>
 
-            <Row className='py-3'>
-                <Col>
-                    Cliente nuevo? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Registrarse
-                    </Link>
-                </Col>
-            </Row>
-        </FormContainer>
+                </Form>
+
+                <Row className='py-3'>
+                    <Col>
+                        Cliente nuevo? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Registrarse
+                        </Link>
+                    </Col>
+                </Row>
+            </FormContainer>
+        </>
     )
 }
 

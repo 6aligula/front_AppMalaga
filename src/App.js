@@ -5,13 +5,14 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
-
+import Footer from './components/Footer';
+import './App.css'
 
 const App = () => {
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Header />
-      <main className='py-3'>
+      <main className='flex-grow-1 py-3'>
         <Container>
           <Routes>
             <Route path='/' element={<HomeScreen />} exact />
@@ -22,7 +23,8 @@ const App = () => {
           </Routes>
         </Container>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 
