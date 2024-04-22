@@ -3,15 +3,14 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Permite que el contenido principal crezca y llene el espacio disponible */
-  .main.flex-grow-1 {
+}
+
+/* Permite que el contenido principal crezca y llene el espacio disponible */
+.main.flex-grow-1 {
     flex-grow: 1;
-  }
-  
-  /* Sticky Footer */
-  footer {
+}
+
+/* Sticky Footer */
+footer {
     margin-top: auto;
-  }
-  
+}

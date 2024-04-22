@@ -8,7 +8,7 @@ import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 
 const LoginScreen = () => {
-    const [email, setEmail] = useState('');
+    const [dni, setDni] = useState('');
     const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const LoginScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(login(email, password))
+        dispatch(login(dni, password))
         //console.log('submitted')
     }
 
@@ -39,19 +39,19 @@ const LoginScreen = () => {
         <>
 
             <FormContainer >
-                <h1>Iniciar Sesión</h1>
+                <h1>Introduzca sus datos</h1>
 
                 {error && <Message variant='danger'>{error}</Message>}
                 {loading && <Loader />}
 
                 <Form onSubmit={submitHandler}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>Dirección de correo electrónico</Form.Label>
+                    <Form.Group controlId='dni'>
+                        <Form.Label>Usuario(DNI)</Form.Label>
                         <Form.Control
-                            type='email'
-                            placeholder='Introduzca email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type='dni'
+                            placeholder='Introduzca dni'
+                            value={dni}
+                            onChange={(e) => setDni(e.target.value)}
                         >
 
                         </Form.Control>
@@ -74,7 +74,7 @@ const LoginScreen = () => {
 
                 <Row className='py-3'>
                     <Col>
-                        Cliente nuevo? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Registrarse
+                        Has olvidado la contraseña? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Recuperar contraseña
                         </Link>
                     </Col>
                 </Row>

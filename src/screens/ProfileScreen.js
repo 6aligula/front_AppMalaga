@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Row, Col, Table } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -80,7 +79,6 @@ const ProfileScreen = () => {
                     <Form.Group controlId='name'>
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control
-                            required
                             type='name'
                             placeholder='Introduzca nombre'
                             value={name}
@@ -92,7 +90,6 @@ const ProfileScreen = () => {
                     <Form.Group controlId='email'>
                         <Form.Label>Dirección de correo electrónico</Form.Label>
                         <Form.Control
-                            required
                             type='email'
                             placeholder='Introduzca email'
                             value={email}
