@@ -18,8 +18,15 @@ import {
     USER_UPDATE_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
 
-} from "../constants/userConstants";
+    USER_FORGOT_PASSWORD_REQUEST,
+    USER_FORGOT_PASSWORD_SUCCESS,
+    USER_FORGOT_PASSWORD_FAIL,
 
+    USER_RESET_PASSWORD_REQUEST,
+    USER_RESET_PASSWORD_SUCCESS,
+    USER_RESET_PASSWORD_FAIL,
+
+} from "../constants/userConstants";
 
 export const login = (dni, password) => async (dispatch) => {
     try {
@@ -184,3 +191,60 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         })
     }
 }
+
+export const forgotPassword = (email) => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_FORGOT_PASSWORD_REQUEST,
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const { data } = await axios.post('/api/users/forgotpassword/', { email }, config);
+
+        dispatch({
+            type: USER_FORGOT_PASSWORD_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: USER_FORGOT_PASSWORD_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        });
+    }
+};
+
+export const resetPassword = (uid, token, password) => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_RESET_PASSWORD_REQUEST,
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        // Enviar token y nueva contraseña al backend
+        const { data } = await axios.post(`/api/users/resetpassword/${uid}/${token}/`, { password }, config);
+
+        dispatch({
+            type: USER_RESET_PASSWORD_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: USER_RESET_PASSWORD_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        });
+    }
+};

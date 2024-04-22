@@ -74,7 +74,7 @@ const LoginScreen = () => {
 
                 <Row className='py-3'>
                     <Col>
-                        Has olvidado la contraseña? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Recuperar contraseña
+                        Has olvidado la contraseña? <Link to={redirect ? `/ForgotPasswordScreen?redirect=${redirect}` : '/ForgotPasswordScreen'}> Recuperar contraseña
                         </Link>
                     </Col>
                 </Row>

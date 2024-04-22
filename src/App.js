@@ -5,6 +5,10 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import ResetPasswordRequestSentScreen from './screens/ResetPasswordRequestSentScreen';
+import ResetPasswordScreen from './screens/ResetPasswordScreen';
+import ResetPasswordResultScreen from './screens/ResetPasswordResultScreen';
 import Footer from './components/Footer';
 import './App.css'
 
@@ -19,6 +23,10 @@ const App = () => {
             <Route path='/login' element={<LoginScreen />} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />
+            <Route path='/ForgotPasswordScreen' element={<ForgotPasswordScreen />} />
+            <Route path='/ResetPasswordRequestSentScreen' element={<ResetPasswordRequestSentScreen />} />
+            <Route path='/reset-password/:uid/:token' element={<ResetPasswordScreen />} />
+            <Route path='/ResetPasswordResultScreen' element={<ResetPasswordResultScreen />} />
 
           </Routes>
         </Container>
