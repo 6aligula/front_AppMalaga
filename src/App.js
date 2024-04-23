@@ -9,6 +9,7 @@ import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import ResetPasswordRequestSentScreen from './screens/ResetPasswordRequestSentScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import ResetPasswordResultScreen from './screens/ResetPasswordResultScreen';
+import ContactScreen from './screens/ContactScreen';
 import Footer from './components/Footer';
 import './App.css'
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path='/ResetPasswordRequestSentScreen' element={<ResetPasswordRequestSentScreen />} />
             <Route path='/reset-password/:uid/:token' element={<ResetPasswordScreen />} />
             <Route path='/ResetPasswordResultScreen' element={<ResetPasswordResultScreen />} />
+            <Route path='/ContactScreen' element={<ContactScreen />} />
 
           </Routes>
         </Container>

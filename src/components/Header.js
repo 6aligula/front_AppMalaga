@@ -52,7 +52,7 @@ const Header = () => {
                             <Nav.Link href="https://www.google.es/maps/@41.3134109,2.0175253,15z?entry=ttu" target="_blank">
                                 MAPA WEB
                             </Nav.Link>
-                            <LinkContainer to="/contact">
+                            <LinkContainer to="/ContactScreen">
                                 <Nav.Link>CONTACTO</Nav.Link>
                             </LinkContainer>
                         </Nav>
