@@ -1,0 +1,12 @@
+
+
+/* Elimina la decoración y color de los links para que puedas personalizar completamente */
+.sidebar a {
+    text-decoration: none;
+    color: black; /* Color de texto de los links */
+    display: block;
+    padding: 1px; /* Espaciado alrededor del texto */
+    margin-bottom: 5px; /* Separación entre opciones */
+    border-radius: 4px; /* Bordes redondeados */
+}
+

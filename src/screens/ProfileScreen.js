@@ -6,6 +6,8 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import UserProfile from '../components/UserProfile';
+import SidebarUsers from '../components/SidebarUsers';
 
 const ProfileScreen = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +15,8 @@ const ProfileScreen = () => {
     const [name, setName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [userData, setUserData] = useState(null);
+
 
     const dispatch = useDispatch();
 
@@ -58,80 +62,21 @@ const ProfileScreen = () => {
                 'password': password,
             }))
             setMessage('')
-            //dispatch(register(name, email, password))
-
         }
         //console.log('submitted')
     }
 
     return (
         <Row>
+
             <Col md={3}>
-                <h1>Perfil de Usuario</h1>
-
-                {message && <Message variant='danger'>{message}</Message>}
-                {error && <Message variant='danger'>{error}</Message>}
-                {loading && <Loader />}
-
-
-
-                <Form onSubmit={submitHandler}>
-                    <Form.Group controlId='name'>
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control
-                            type='name'
-                            placeholder='Introduzca nombre'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        >
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group controlId='email'>
-                        <Form.Label>Dirección de correo electrónico</Form.Label>
-                        <Form.Control
-                            type='email'
-                            placeholder='Introduzca email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        >
-
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group controlId='password' className='py-3'>
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control
-                            type='password'
-                            placeholder='Introduzca contraseña'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        >
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group controlId='confirmPassword' className='py-3'>
-                        <Form.Label>Confirmar Contraseña</Form.Label>
-                        <Form.Control
-
-                            type='password'
-                            placeholder='Confirmar contraseña'
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        >
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Button type='submit' variant='primary'> Actualizar</Button>
-
-                </Form>
+                <SidebarUsers />
             </Col>
 
             <Col md={9}>
-                <h2>Mis Movidas</h2>
+                {user && <UserProfile userData={user} />}
             </Col>
         </Row>
-
     )
 }
 
