@@ -12,6 +12,8 @@ import {
     userResetPasswordReducer,
 } from '../reducers/userReducers';
 
+import {contactReducer} from '../reducers/contactReducers';
+
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
@@ -19,6 +21,7 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userForgotPassword: userForgotPasswordReducer,
     userResetPassword: userResetPasswordReducer,
+    contact: contactReducer,
 
 });
 
