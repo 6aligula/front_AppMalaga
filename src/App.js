@@ -1,15 +1,17 @@
 import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
-import HomeScreen from './screens/HomeScreen';
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
-import ResetPasswordRequestSentScreen from './screens/ResetPasswordRequestSentScreen';
-import ResetPasswordScreen from './screens/ResetPasswordScreen';
-import ResetPasswordResultScreen from './screens/ResetPasswordResultScreen';
-import ContactScreen from './screens/ContactScreen';
+import {
+  HomeScreen,
+  LoginScreen, 
+  RegisterScreen, 
+  ProfileScreen, 
+  ForgotPasswordScreen, 
+  ResetPasswordRequestSentScreen, 
+  ResetPasswordScreen, 
+  ResetPasswordResultScreen,
+  ContactScreen,
+} from './screens'
 import Footer from './components/Footer';
 import './App.css'
 
