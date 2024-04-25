@@ -14,8 +14,8 @@ const SidebarUsers = () => {
                     <Navbar.Toggle onClick={() => setOpen(!open)} aria-controls="responsive-sidebar-nav" />
                     <Navbar.Collapse in={open} id="responsive-sidebar-nav">
                         <Nav className="me-auto flex-column">
-                            <Nav.Link as={NavLink} to="/datos-comunidad">Datos Comunidad de Regantes</Nav.Link>
-                            <Nav.Link as={NavLink} to="/datos-usuario">Datos del Usuario del Agua</Nav.Link>
+                            <Nav.Link as={NavLink} to="/DatosComunidad">Datos Comunidad de Regantes</Nav.Link>
+                            <Nav.Link as={NavLink} to="/DatosAgua">Datos del Usuario del Agua</Nav.Link>
                             <Nav.Link as={NavLink} to="/parcelario">Parcelario</Nav.Link>
                             <Nav.Link as={NavLink} to="/medicion-consumos">Medición de Consumos</Nav.Link>
                             <Nav.Link as={NavLink} to="/anadir-lecturas">Añadir Lecturas</Nav.Link>

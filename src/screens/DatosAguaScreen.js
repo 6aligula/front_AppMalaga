@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
-import UserProfile from '../components/UserComunidad';
+import UserAgua from '../components/UserAgua';
 import SidebarUsers from '../components/SidebarUsers';
 
-const ProfileScreen = () => {
+const DatosAguaScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -73,11 +73,11 @@ const ProfileScreen = () => {
                 <SidebarUsers />
             </Col>
 
-            {/* <Col md={9}>
-                {user && <UserProfile userData={user} />}
-            </Col> */}
+            <Col md={9}>
+                {user && <UserAgua userData={user} />}
+            </Col> 
         </Row>
     )
-}
+};
 
-export default ProfileScreen
+export default DatosAguaScreen;

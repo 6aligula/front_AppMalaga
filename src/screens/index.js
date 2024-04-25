@@ -7,3 +7,5 @@ export {default as ResetPasswordRequestSentScreen} from './ResetPasswordRequestS
 export {default as ResetPasswordScreen} from './ResetPasswordScreen';
 export {default as ResetPasswordResultScreen} from './ResetPasswordResultScreen';
 export {default as ContactScreen} from './ContactScreen';
+export {default as DatosComunidadScreen} from './DatosComunidadScreen';
+export {default as DatosAguaScreen} from './DatosAguaScreen';

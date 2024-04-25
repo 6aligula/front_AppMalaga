@@ -11,6 +11,9 @@ import {
   ResetPasswordScreen, 
   ResetPasswordResultScreen,
   ContactScreen,
+  DatosComunidadScreen,
+  DatosAguaScreen,
+
 } from './screens'
 import Footer from './components/Footer';
 import './App.css'
@@ -31,6 +34,8 @@ const App = () => {
             <Route path='/reset-password/:uid/:token' element={<ResetPasswordScreen />} />
             <Route path='/ResetPasswordResultScreen' element={<ResetPasswordResultScreen />} />
             <Route path='/ContactScreen' element={<ContactScreen />} />
+            <Route path='/DatosComunidad' element={<DatosComunidadScreen />} />
+            <Route path='/DatosAgua' element={<DatosAguaScreen />} />
 
           </Routes>
         </Container>

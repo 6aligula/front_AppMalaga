@@ -40,6 +40,8 @@ const UserProfile = ({ userData }) => {
                 </Card.Body>
             </Card>
 
+                        <h1>Comunidad de regantes</h1>
+
             <Card className="mb-3">
                 <Card.Header>Datos Bancarios</Card.Header>
                 <Card.Body>
@@ -52,7 +54,7 @@ const UserProfile = ({ userData }) => {
                                         <ListGroup.Item> {perfil.nombre_entidad}</ListGroup.Item>
                                     </ListGroup>
                                 </Col>
-    
+
                                 <Col md={2}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item><strong>Número de banco:</strong></ListGroup.Item>
@@ -86,51 +88,6 @@ const UserProfile = ({ userData }) => {
                 </Card.Body>
             </Card>
 
-            {perfil && (
-                <Card className="mb-3">
-                    <Card.Body>
-                        <Card.Header>Cargos Comunidad</Card.Header>
-                        <Row>
-                            <Col md={2}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><strong>DNI:</strong> </ListGroup.Item>
-                                    <ListGroup.Item>{userData.username}</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                            <Col md={2}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><strong>Nombre:</strong></ListGroup.Item>
-                                    <ListGroup.Item>{userData.name}</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                            <Col md={2}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><strong>Cargo:</strong></ListGroup.Item>
-                                    <ListGroup.Item>{perfil.cargo}</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                            <Col md={2}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><strong>Telefono:</strong></ListGroup.Item>
-                                    <ListGroup.Item>{perfil.telefono_contacto}</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                            <Col md={2}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><strong>Email:</strong></ListGroup.Item>
-                                    <ListGroup.Item>{perfil.email_contacto}</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                            <Col md={2}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><strong>Movil:</strong></ListGroup.Item>
-                                    <ListGroup.Item> {perfil.telefono_movil || 'No proporcionado'}</ListGroup.Item>
-                                </ListGroup>
-                            </Col>
-                        </Row>
-                    </Card.Body>
-                </Card>
-            )}
         </>
     );
 };
