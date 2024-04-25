@@ -19,7 +19,7 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
             <Card.Header>Cargos Comunidad</Card.Header>
             <Card.Body>
                 <Row>
-                    <Col md={2}>
+                    <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <strong>DNI:</strong>
@@ -28,16 +28,16 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={username}
+                                        value={username || 'vacio'}
                                         onChange={handleChange(setUsername)}
                                     />
                                 ) : (
-                                    username
+                                    username || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col md={2}>
+                    <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <strong>Nombre:</strong>
@@ -46,17 +46,17 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={name}
+                                        value={name || 'vacio'}
                                         onChange={handleChange(setName)}
                                     />
                                 ) : (
-                                    userData.name
+                                    userData.name || 'vacio'
 
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col md={2}>
+                    <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <strong>Cargo:</strong>
@@ -65,16 +65,19 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={cargo}
+                                        value={cargo || 'vacio'}
                                         onChange={handleChange(setCargo)}
                                     />
                                 ) : (
-                                    cargo
+                                    cargo || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col md={2}>
+                </Row>
+
+                <Row>
+                    <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <strong>Telefono:</strong>
@@ -83,16 +86,16 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={telefonoContacto}
+                                        value={telefonoContacto || 'vacio'}
                                         onChange={handleChange(setTelefonoContacto)}
                                     />
                                 ) : (
-                                    telefonoContacto
+                                    telefonoContacto || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col md={2}>
+                    <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <strong>Email:</strong>
@@ -101,16 +104,16 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="email"
-                                        value={emailContacto}
+                                        value={emailContacto || 'vacio'}
                                         onChange={handleChange(setEmailContacto)}
                                     />
                                 ) : (
-                                    emailContacto
+                                    emailContacto || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col md={2}>
+                    <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <strong>Movil:</strong>
@@ -119,11 +122,11 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={movil || 'No proporcionado'}
+                                        value={movil || 'vacio'}
                                         onChange={handleChange(setMovil)}
                                     />
                                 ) : (
-                                    movil || 'No proporcionado'
+                                    movil || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>

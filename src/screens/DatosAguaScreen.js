@@ -43,8 +43,8 @@ const DatosAguaScreen = () => {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             } else {
-                setName(user.name);
-                setEmail(user.email);
+                setName(user.name || '');
+                setEmail(user.email || '');
             }
         }
     }, [dispatch, navigate, userInfo, user, success])

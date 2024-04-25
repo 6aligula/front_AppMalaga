@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
-import UserComunidad from '../components/UserComunidad';
 import SidebarUsers from '../components/SidebarUsers';
 import DatosPersonales from '../components/DatosPersonales';
 import DatosBancarios from '../components/DatosBancarios';
@@ -45,8 +44,8 @@ const DatosComunidadScreen = () => {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             } else {
-                setName(user.name);
-                setEmail(user.email);
+                setName(user.name || '');
+                setEmail(user.email || '');
             }
         }
     }, [dispatch, navigate, userInfo, user, success])
@@ -70,28 +69,34 @@ const DatosComunidadScreen = () => {
     }
 
     return (
-        <Row>
-            <Col md={3}>
-                <SidebarUsers />
-            </Col>
-            <Col md={9}>
-                {loading ? (
-                    <Loader />
-                ) : error ? (
-                    <Message variant="danger">{error}</Message>
-                ) : user && user.perfil ? (
-                    <>
-                        <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} />
-                        <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} />
-                        <CargosComunidad userData={user} perfil={user.perfil} isAdmin={userInfo.isAdmin} />
-                    </>
-                ) : (
-                    <Message variant="warning">No se encontraron datos del usuario.</Message>
-                )}
-            </Col>
-        </Row>
+        <>
+            <Row>
+                <Col md={3}>
+                    <SidebarUsers />
+                </Col>
+                <Col md={8}>
+                    {loading ? (
+                        <Loader />
+                    ) : error ? (
+                        <Message variant="danger">{error}</Message>
+                    ) : user && user.perfil ? (
+                        <>
+                            <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} />
+                            <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} />
+                            <CargosComunidad userData={user} perfil={user.perfil} isAdmin={userInfo.isAdmin} />
+                        </>
+                    ) : (
+                        <Message variant="warning">No se encontraron datos del usuario.</Message>
+                    )}
+                </Col>
+            </Row>
+            <Row>
+                <Button variant="primary" onClick={submitHandler}>
+                    Actualizar
+                </Button>
+            </Row>
+        </>
     );
-
 };
 
 export default DatosComunidadScreen;
