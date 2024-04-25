@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Col, ListGroup, Form, Row, Card } from 'react-bootstrap';
 
-const DatosBancarios = ({ perfil, isAdmin }) => {
+const DatosBancarios = ({ perfil, isAdmin, onUpdate }) => {
     // Estados para cada campo bancario
-    const [nombreEntidad, setNombreEntidad] = useState(perfil.nombre_entidad);
-    const [numeroBanco, setNumeroBanco] = useState(perfil.numero_banco);
-    const [numeroSucursal, setNumeroSucursal] = useState(perfil.numero_sucursal);
-    const [digitoControl, setDigitoControl] = useState(perfil.digito_control);
-    const [numeroCuenta, setNumeroCuenta] = useState(perfil.numero_cuenta);
+    const [nombreEntidad, setNombreEntidad] = useState(perfil.nombre_entidad || "");
+    const [numeroBanco, setNumeroBanco] = useState(perfil.numero_banco || "");
+    const [numeroSucursal, setNumeroSucursal] = useState(perfil.numero_sucursal || "");
+    const [digitoControl, setDigitoControl] = useState(perfil.digito_control || "");
+    const [numeroCuenta, setNumeroCuenta] = useState(perfil.numero_cuenta || "");
 
-    const handleChange = (setter) => (e) => {
-        setter(e.target.value);
-    };
+    const handleChange = (setter, field) => e => {
+        const value = e.target.value;
+        setter(value); // Actualiza el estado local
+        // Construye un nuevo objeto perfil para actualizar, asegurándote de mantener otros datos en perfil
+        const updatedPerfil = { ...perfil, [field]: value };
+        onUpdate(updatedPerfil); // Actualiza el estado en el componente padre
+    }
 
     return (
         <Card className="mb-3">
@@ -27,8 +31,8 @@ const DatosBancarios = ({ perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={nombreEntidad || 'No proporcionado'}
-                                        onChange={handleChange(setNombreEntidad)}
+                                        value={nombreEntidad}
+                                        onChange={handleChange(setNombreEntidad, 'nombre_entidad')}
                                     />
                                 ) : (
                                     nombreEntidad || 'No proporcionado'
@@ -45,8 +49,8 @@ const DatosBancarios = ({ perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={numeroBanco || 'No proporcionado'}
-                                        onChange={handleChange(setNumeroBanco)}
+                                        value={numeroBanco}
+                                        onChange={handleChange(setNumeroBanco, 'numero_banco')}
                                     />
                                 ) : (
                                     numeroBanco || 'No proporcionado'
@@ -63,8 +67,8 @@ const DatosBancarios = ({ perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={numeroSucursal || 'No proporcionado'}
-                                        onChange={handleChange(setNumeroSucursal)}
+                                        value={numeroSucursal}
+                                        onChange={handleChange(setNumeroSucursal, 'numero_sucursal')}
                                     />
                                 ) : (
                                     numeroSucursal || 'No proporcionado'
@@ -81,8 +85,8 @@ const DatosBancarios = ({ perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={digitoControl || 'No proporcionado'}
-                                        onChange={handleChange(setDigitoControl)}
+                                        value={digitoControl}
+                                        onChange={handleChange(setDigitoControl, 'digito_control')}
                                     />
                                 ) : (
                                     digitoControl || 'No proporcionado'
@@ -99,8 +103,8 @@ const DatosBancarios = ({ perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={numeroCuenta || 'No proporcionado'}
-                                        onChange={handleChange(setNumeroCuenta)}
+                                        value={numeroCuenta}
+                                        onChange={handleChange(setNumeroCuenta, 'numero_cuenta')}
                                     />
                                 ) : (
                                     numeroCuenta || 'No proporcionado'

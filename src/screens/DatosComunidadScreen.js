@@ -12,18 +12,17 @@ import DatosBancarios from '../components/DatosBancarios';
 import CargosComunidad from '../components/CargosComunidad';
 
 const DatosComunidadScreen = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const [userData, setUserData] = useState(null);
+    const [perfilData, setPerfilData] = useState({});
 
+    const handlePerfilUpdate = (newData) => {
+        setPerfilData(prevData => ({
+            ...prevData, // Conserva el estado anterior
+            ...newData   // Aplica los cambios nuevos
+        }));
+    };
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
-
 
     const userDetails = useSelector(state => state.userDetails);
     const { error, loading, user } = userDetails;
@@ -43,9 +42,6 @@ const DatosComunidadScreen = () => {
             if (!user || !user.name || success || userInfo._id !== user._id) {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
-            } else {
-                setName(user.name || '');
-                setEmail(user.email || '');
             }
         }
     }, [dispatch, navigate, userInfo, user, success])
@@ -53,49 +49,39 @@ const DatosComunidadScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
-            setMessage('Las contraseñas no coinciden')
-        } else {
-            console.log('actualizando');
-            dispatch(updateUserProfile({
-                'id': user._id,
-                'name': name,
-                'email': email,
-                'password': password,
-            }))
-            setMessage('')
-        }
-        //console.log('submitted')
-    }
+        console.log('actualizando', perfilData);
+        dispatch(updateUserProfile(perfilData)); // Asegúrate que esta acción maneja el objeto correctamente
+    };
 
     return (
-        <>
-            <Row>
-                <Col md={3}>
-                    <SidebarUsers />
-                </Col>
-                <Col md={8}>
-                    {loading ? (
-                        <Loader />
-                    ) : error ? (
-                        <Message variant="danger">{error}</Message>
-                    ) : user && user.perfil ? (
-                        <>
-                            <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} />
-                            <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} />
-                            <CargosComunidad userData={user} perfil={user.perfil} isAdmin={userInfo.isAdmin} />
-                        </>
-                    ) : (
-                        <Message variant="warning">No se encontraron datos del usuario.</Message>
-                    )}
-                </Col>
-            </Row>
-            <Row>
-                <Button variant="primary" onClick={submitHandler}>
-                    Actualizar
-                </Button>
-            </Row>
-        </>
+
+        <Row>
+            <Col md={3}>
+                <SidebarUsers />
+            </Col>
+            <Col md={8}>
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Message variant="danger">{error}</Message>
+                ) : user && user.perfil ? (
+                    <>
+                        <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} onUpdate={handlePerfilUpdate} />
+                        <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} onUpdate={handlePerfilUpdate} />
+                        <CargosComunidad userData={user} perfil={user.perfil} isAdmin={userInfo.isAdmin} onUpdate={handlePerfilUpdate} />
+                        {userInfo.isAdmin && (
+                            <Button variant="primary" onClick={submitHandler}>
+                                Actualizar
+                            </Button>
+                        )}
+                    </>
+                ) : (
+                    <Message variant="warning">No se encontraron datos del usuario.</Message>
+                )}
+            </Col>
+        </Row>
+
+
     );
 };
 

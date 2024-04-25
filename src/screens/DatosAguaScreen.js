@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -11,14 +11,14 @@ import DatosBancarios from '../components/DatosBancarios';
 import SidebarUsers from '../components/SidebarUsers';
 
 const DatosAguaScreen = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const [userData, setUserData] = useState(null);
+    const [perfilData, setPerfilData] = useState({});
 
-
+    const handlePerfilUpdate = (newData) => {
+        setPerfilData(prevData => ({
+            ...prevData, // Conserva el estado anterior
+            ...newData   // Aplica los cambios nuevos
+        }));
+    };
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -42,9 +42,6 @@ const DatosAguaScreen = () => {
             if (!user || !user.name || success || userInfo._id !== user._id) {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
-            } else {
-                setName(user.name || '');
-                setEmail(user.email || '');
             }
         }
     }, [dispatch, navigate, userInfo, user, success])
@@ -52,20 +49,9 @@ const DatosAguaScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
-            setMessage('Las contraseñas no coinciden')
-        } else {
-            console.log('actualizando');
-            dispatch(updateUserProfile({
-                'id': user._id,
-                'name': name,
-                'email': email,
-                'password': password,
-            }))
-            setMessage('')
-        }
-        //console.log('submitted')
-    }
+        console.log('actualizando', perfilData);
+        dispatch(updateUserProfile(perfilData)); // Asegúrate que esta acción maneja el objeto correctamente
+    };
 
     return (
         <Row>
@@ -80,8 +66,13 @@ const DatosAguaScreen = () => {
                     <Message variant="danger">{error}</Message>
                 ) : user && user.perfil ? (
                     <>
-                        <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} />
-                        <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} />
+                        <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} onUpdate={handlePerfilUpdate}/>
+                        <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} onUpdate={handlePerfilUpdate} />
+                        {userInfo.isAdmin && (
+                            <Button variant="primary" onClick={submitHandler}>
+                                Actualizar
+                            </Button>
+                        )}
                     </>
                 ) : (
                     <Message variant="warning">No se encontraron datos del usuario.</Message>

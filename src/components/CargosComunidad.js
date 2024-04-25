@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Card, Col, ListGroup, Form, Row } from 'react-bootstrap';
 
-const CargosComunidad = ({ userData, perfil, isAdmin }) => {
+const CargosComunidad = ({ userData, perfil, isAdmin, onUpdate }) => {
     // Estados para cada campo relacionado con los cargos en la comunidad
-    const [name, setName] = useState(userData.name);
-    const [username, setUsername] = useState(userData.username);
-    const [cargo, setCargo] = useState(perfil.cargo);
-    const [telefonoContacto, setTelefonoContacto] = useState(perfil.telefono_contacto);
-    const [emailContacto, setEmailContacto] = useState(perfil.email_contacto);
-    const [movil, setMovil] = useState(perfil.telefono_movil);
+    const [name, setName] = useState(userData.name || "");
+    const [username, setUsername] = useState(userData.username) || "";
+    const [cargo, setCargo] = useState(perfil.cargo || "");
+    const [telefono_contacto, setTelefonoContacto] = useState(perfil.telefono_contacto || "");
+    const [email_contacto, setEmailContacto] = useState(perfil.email_contacto || "");
+    const [telefono_movil, setMovil] = useState(perfil.telefono_movil || "");
 
-    const handleChange = (setter) => (e) => {
-        setter(e.target.value);
-    };
+    const handleChange = (setter, field) => e => {
+        const value = e.target.value;
+        setter(value); // Actualiza el estado local
+        // Construye un nuevo objeto perfil para actualizar, asegurándote de mantener otros datos en perfil
+        const updatedPerfil = { ...perfil, [field]: value };
+        onUpdate(updatedPerfil); // Actualiza el estado en el componente padre
+    }
 
     return (
         <Card className="mb-3">
@@ -28,8 +32,8 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={username || 'vacio'}
-                                        onChange={handleChange(setUsername)}
+                                        value={username}
+                                        onChange={handleChange(setUsername, 'username')}
                                     />
                                 ) : (
                                     username || 'vacio'
@@ -46,11 +50,11 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={name || 'vacio'}
-                                        onChange={handleChange(setName)}
+                                        value={name}
+                                        onChange={handleChange(setName, 'name')}
                                     />
                                 ) : (
-                                    userData.name || 'vacio'
+                                    name || 'vacio'
 
                                 )}
                             </ListGroup.Item>
@@ -65,8 +69,8 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={cargo || 'vacio'}
-                                        onChange={handleChange(setCargo)}
+                                        value={cargo}
+                                        onChange={handleChange(setCargo, 'cargo')}
                                     />
                                 ) : (
                                     cargo || 'vacio'
@@ -86,11 +90,11 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={telefonoContacto || 'vacio'}
-                                        onChange={handleChange(setTelefonoContacto)}
+                                        value={telefono_contacto}
+                                        onChange={handleChange(setTelefonoContacto, 'telefono_contacto')}
                                     />
                                 ) : (
-                                    telefonoContacto || 'vacio'
+                                    telefono_contacto || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
@@ -104,11 +108,11 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="email"
-                                        value={emailContacto || 'vacio'}
-                                        onChange={handleChange(setEmailContacto)}
+                                        value={email_contacto}
+                                        onChange={handleChange(setEmailContacto, 'email_contacto')}
                                     />
                                 ) : (
-                                    emailContacto || 'vacio'
+                                    email_contacto || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
@@ -122,11 +126,11 @@ const CargosComunidad = ({ userData, perfil, isAdmin }) => {
                                 {isAdmin ? (
                                     <Form.Control
                                         type="text"
-                                        value={movil || 'vacio'}
-                                        onChange={handleChange(setMovil)}
+                                        value={telefono_movil}
+                                        onChange={handleChange(setMovil, 'telefono_movil')}
                                     />
                                 ) : (
-                                    movil || 'vacio'
+                                    telefono_movil || 'vacio'
                                 )}
                             </ListGroup.Item>
                         </ListGroup>
