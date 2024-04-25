@@ -9,6 +9,7 @@ import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import DatosPersonales from '../components/DatosPersonales';
 import DatosBancarios from '../components/DatosBancarios';
 import SidebarUsers from '../components/SidebarUsers';
+import Mapa from '../components/Mapa';
 
 const DatosAguaScreen = () => {
     const [perfilData, setPerfilData] = useState({});
@@ -73,6 +74,7 @@ const DatosAguaScreen = () => {
                                 Actualizar
                             </Button>
                         )}
+                        <Mapa />
                     </>
                 ) : (
                     <Message variant="warning">No se encontraron datos del usuario.</Message>
