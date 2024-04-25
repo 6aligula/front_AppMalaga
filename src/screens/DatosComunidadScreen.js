@@ -8,6 +8,9 @@ import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import UserComunidad from '../components/UserComunidad';
 import SidebarUsers from '../components/SidebarUsers';
+import DatosPersonales from '../components/DatosPersonales';
+import DatosBancarios from '../components/DatosBancarios';
+import CargosComunidad from '../components/CargosComunidad';
 
 const DatosComunidadScreen = () => {
     const [email, setEmail] = useState('');
@@ -68,16 +71,27 @@ const DatosComunidadScreen = () => {
 
     return (
         <Row>
-
             <Col md={3}>
                 <SidebarUsers />
             </Col>
-
             <Col md={9}>
-                {user && <UserComunidad userData={user} />}
-            </Col> 
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Message variant="danger">{error}</Message>
+                ) : user && user.perfil ? (
+                    <>
+                        <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} />
+                        <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} />
+                        <CargosComunidad userData={user} perfil={user.perfil} isAdmin={userInfo.isAdmin} />
+                    </>
+                ) : (
+                    <Message variant="warning">No se encontraron datos del usuario.</Message>
+                )}
+            </Col>
         </Row>
-    )
+    );
+
 };
 
 export default DatosComunidadScreen;

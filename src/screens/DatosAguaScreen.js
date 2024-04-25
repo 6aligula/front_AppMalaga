@@ -6,7 +6,8 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
-import UserAgua from '../components/UserAgua';
+import DatosPersonales from '../components/DatosPersonales';
+import DatosBancarios from '../components/DatosBancarios';
 import SidebarUsers from '../components/SidebarUsers';
 
 const DatosAguaScreen = () => {
@@ -72,10 +73,20 @@ const DatosAguaScreen = () => {
             <Col md={3}>
                 <SidebarUsers />
             </Col>
-
             <Col md={9}>
-                {user && <UserAgua userData={user} />}
-            </Col> 
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Message variant="danger">{error}</Message>
+                ) : user && user.perfil ? (
+                    <>
+                        <DatosPersonales userData={user} isAdmin={userInfo.isAdmin} />
+                        <DatosBancarios perfil={user.perfil} isAdmin={userInfo.isAdmin} />
+                    </>
+                ) : (
+                    <Message variant="warning">No se encontraron datos del usuario.</Message>
+                )}
+            </Col>
         </Row>
     )
 };
