@@ -15,23 +15,20 @@ const SidebarParcela = () => {
 
     const usosParcelaList = useSelector(state => state.usosParcelaList);
     const { loading, error, usosParcela } = usosParcelaList;
-
-    const [isAdmin, setIsAdmin] = useState(true);
+    //console.log(usosParcela);
 
     useEffect(() => {
         dispatch(listUsosParcela());
     }, [dispatch]);
 
 
-    const handleUpdate = (updatedUsos) => {
-    };
 
     const [selectedComponent, setSelectedComponent] = useState('UsosParcela');
 
     const renderComponent = () => {
         switch (selectedComponent) {
             case 'UsosParcela':
-                return <UsosParcela usos={usosParcela} isAdmin={isAdmin} onUpdate={handleUpdate} />;
+                return <UsosParcela usos={usosParcela} />;
             case 'ContadoresMedidas':
                 return <ContadoresMedidas />;
             case 'Consumos':
@@ -41,7 +38,7 @@ const SidebarParcela = () => {
             case 'ControlDePagos':
                 return <ControlDePagos />;
             default:
-                return <UsosParcela usos={usosParcela} isAdmin={isAdmin} onUpdate={handleUpdate} />;
+                return <UsosParcela usos={usosParcela}/>;
         }
     };
 

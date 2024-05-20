@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Card, Form, Table } from 'react-bootstrap';
 
-const UsosParcela = ({ usos, isAdmin, onUpdate }) => {
+const UsosParcela = ({ usos }) => {
     const [edits, setEdits] = useState(usos);
 
+    const isAdmin = usos.length > 0 ? usos[0].isAdmin : false;
+
     const handleChange = (index, field) => e => {
-        const value = e.target.value || 'Sin datos';
+        const value = e.target.value || 'Vacio';
         const updatedUsos = [...edits];
         updatedUsos[index][field] = value;
         setEdits(updatedUsos);
-        onUpdate(updatedUsos);
+        //onUpdate(updatedUsos);
     };
 
     return (
@@ -34,77 +36,77 @@ const UsosParcela = ({ usos, isAdmin, onUpdate }) => {
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.tipo_uso || 'Sin datos'}
+                                            value={uso.tipo_uso || 'Vacio'}
                                             onChange={handleChange(index, 'tipo_uso')}
                                         />
                                     ) : (
-                                        uso.tipo_uso || 'No proporcionado'
+                                        uso.tipo_uso || 'Vacio'
                                     )}
                                 </td>
                                 <td>
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.cultivo || 'Sin datos'}
+                                            value={uso.cultivo || 'Vacio'}
                                             onChange={handleChange(index, 'cultivo')}
                                         />
                                     ) : (
-                                        uso.cultivo || 'No proporcionado'
+                                        uso.cultivo || 'Vacio'
                                     )}
                                 </td>
                                 <td>
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.superficie || 'Sin datos'}
+                                            value={uso.superficie || 'Vacio'}
                                             onChange={handleChange(index, 'superficie')}
                                         />
                                     ) : (
-                                        uso.superficie || 'No proporcionado'
+                                        uso.superficie || 'Vacio'
                                     )}
                                 </td>
                                 <td>
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.sistema_riego || 'Sin datos'}
+                                            value={uso.sistema_riego || 'Vacio'}
                                             onChange={handleChange(index, 'sistema_riego')}
                                         />
                                     ) : (
-                                        uso.sistema_riego || 'No proporcionado'
+                                        uso.sistema_riego || 'Vacio'
                                     )}
                                 </td>
                                 <td>
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.estado || 'Sin datos'}
+                                            value={uso.estado || 'Vacio'}
                                             onChange={handleChange(index, 'estado')}
                                         />
                                     ) : (
-                                        uso.estado || 'No proporcionado'
+                                        uso.estado || 'Vacio'
                                     )}
                                 </td>
                                 <td>
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.fecha_alta || 'Sin datos'}
+                                            value={uso.fecha_alta || 'Vacio'}
                                             onChange={handleChange(index, 'fecha_alta')}
                                         />
                                     ) : (
-                                        uso.fecha_alta || 'No proporcionado'
+                                        uso.fecha_alta || 'Vacio'
                                     )}
                                 </td>
                                 <td>
                                     {isAdmin ? (
                                         <Form.Control
                                             type="text"
-                                            value={uso.fecha_baja || 'Sin datos'}
+                                            value={uso.fecha_baja || 'Vacio'}
                                             onChange={handleChange(index, 'fecha_baja')}
                                         />
                                     ) : (
-                                        uso.fecha_baja || 'No proporcionado'
+                                        uso.fecha_baja || 'Vacio'
                                     )}
                                 </td>
                             </tr>

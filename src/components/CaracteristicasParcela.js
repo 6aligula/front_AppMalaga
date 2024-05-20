@@ -22,7 +22,7 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Aquí puedes agregar la lógica para enviar el formulario
-        console.log('Formulario enviado:', formData);
+        //console.log('Formulario enviado:', formData);
         // Por ejemplo, podrías hacer una llamada a una acción de Redux para actualizar la información
     };
 
