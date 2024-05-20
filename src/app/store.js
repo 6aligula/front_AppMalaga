@@ -14,6 +14,11 @@ import {
 
 import {contactReducer} from '../reducers/contactReducers';
 
+import { 
+    usosParcelaListReducer,
+    caracteristicasParcelaListReducer,
+ } from '../reducers/parcelaReducers';
+
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
@@ -22,6 +27,8 @@ const reducer = combineReducers({
     userForgotPassword: userForgotPasswordReducer,
     userResetPassword: userResetPasswordReducer,
     contact: contactReducer,
+    usosParcelaList: usosParcelaListReducer,
+    caracteristicasParcelaList: caracteristicasParcelaListReducer,
 
 });
 

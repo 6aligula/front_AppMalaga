@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Nav, Navbar, Container, Row, Card } from 'react-bootstrap';
+import { listUsosParcela } from '../actions/parcelaAction';
 import UsosParcela from '../components/UsosParcela';
 import DatosAdicionales from '../components/DatosAdicionales';
 import ControlDePagos from '../components/ControlDePagos';
@@ -7,30 +10,20 @@ import ContadoresMedidas from '../components/ContadoresMedidas';
 import Consumos from '../components/Consumos';
 
 const SidebarParcela = () => {
-    const [usos, setUsos] = useState([
-        {
-            tipoUso: 'Agrícola',
-            cultivo: 'Algodón',
-            superficie: '2,0000',
-            sistemaRiego: 'Goteo',
-            estado: 'Regular',
-            fechaAlta: '01-01-2021',
-            fechaBaja: '',
-        },
-        {
-            tipoUso: 'Ganadero',
-            cultivo: 'Mangos',
-            superficie: '1,7000',
-            sistemaRiego: 'Aspersión',
-            estado: 'Irregular',
-            fechaAlta: '01-06-2020',
-            fechaBaja: '01-01-2022',
-        },
-    ]);
+
+    const dispatch = useDispatch();
+
+    const usosParcelaList = useSelector(state => state.usosParcelaList);
+    const { loading, error, usosParcela } = usosParcelaList;
+
     const [isAdmin, setIsAdmin] = useState(true);
 
+    useEffect(() => {
+        dispatch(listUsosParcela());
+    }, [dispatch]);
+
+
     const handleUpdate = (updatedUsos) => {
-        setUsos(updatedUsos);
     };
 
     const [selectedComponent, setSelectedComponent] = useState('UsosParcela');
@@ -38,7 +31,7 @@ const SidebarParcela = () => {
     const renderComponent = () => {
         switch (selectedComponent) {
             case 'UsosParcela':
-                return <UsosParcela usos={usos} isAdmin={isAdmin} onUpdate={handleUpdate} />;
+                return <UsosParcela usos={usosParcela} isAdmin={isAdmin} onUpdate={handleUpdate} />;
             case 'ContadoresMedidas':
                 return <ContadoresMedidas />;
             case 'Consumos':
@@ -48,7 +41,7 @@ const SidebarParcela = () => {
             case 'ControlDePagos':
                 return <ControlDePagos />;
             default:
-                return <UsosParcela usos={usos} isAdmin={isAdmin} onUpdate={handleUpdate} />;
+                return <UsosParcela usos={usosParcela} isAdmin={isAdmin} onUpdate={handleUpdate} />;
         }
     };
 
@@ -74,7 +67,7 @@ const SidebarParcela = () => {
             </Row>
 
             <Row>
-                {renderComponent()}
+                {loading ? <div>Loading...</div> : error ? <div>{error}</div> : renderComponent()}
             </Row>
         </>
     );
