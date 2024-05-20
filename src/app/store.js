@@ -17,6 +17,12 @@ import {contactReducer} from '../reducers/contactReducers';
 import { 
     usosParcelaListReducer,
     caracteristicasParcelaListReducer,
+    contadoresParcelaListReducer,
+    consumosParcelaListReducer,
+    datosAdicionalesParcelaListReducer,
+    pagosParcelaListReducer,
+
+
  } from '../reducers/parcelaReducers';
 
 const reducer = combineReducers({
@@ -29,6 +35,10 @@ const reducer = combineReducers({
     contact: contactReducer,
     usosParcelaList: usosParcelaListReducer,
     caracteristicasParcelaList: caracteristicasParcelaListReducer,
+    contadoresParcelaList: contadoresParcelaListReducer,
+    consumosParcelaList: consumosParcelaListReducer,
+    datosAdicionalesParcelaList: datosAdicionalesParcelaListReducer,
+    pagosParcelaList: pagosParcelaListReducer,
 
 });
 
