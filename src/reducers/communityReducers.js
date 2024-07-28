@@ -10,7 +10,7 @@ import {
     COMUNIDAD_UPDATE_PROFILE_RESET
 } from "../constants/comunidadConstants";
 
-export const comunidadDetailsReducer = (state = { comunidad: {} }, action) => {
+export const comunidadDetailsReducer = (state = { comunidad: [] }, action) => {
     switch (action.type) {
         case COMUNIDAD_DETAILS_REQUEST:
             return { loading: true, ...state }
