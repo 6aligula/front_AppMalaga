@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Col, ListGroup, Form, Row } from 'react-bootstrap';
 
-const CargosComunidad = ({ userData, perfil, isAdmin, onUpdate }) => {
+const CargosComunidad = ({ perfil, isAdmin, onUpdate }) => {
     // Estados para cada campo relacionado con los cargos en la comunidad
-    const [name, setName] = useState(userData.name || "");
-    const [username, setUsername] = useState(userData.username) || "";
+    const [name, setName] = useState(perfil.nombre || "");
+    const [username, setUsername] = useState(perfil.cif) || "";
     const [cargo, setCargo] = useState(perfil.cargo || "");
     const [telefono_contacto, setTelefonoContacto] = useState(perfil.telefono_contacto || "");
     const [email_contacto, setEmailContacto] = useState(perfil.email_contacto || "");
@@ -26,7 +26,7 @@ const CargosComunidad = ({ userData, perfil, isAdmin, onUpdate }) => {
                     <Col md={4}>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
-                                <strong>DNI:</strong>
+                                <strong>CIF:</strong>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 {isAdmin ? (

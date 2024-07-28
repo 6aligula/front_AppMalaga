@@ -25,6 +25,12 @@ import {
 
  } from '../reducers/parcelaReducers';
 
+ import {
+    comunidadDetailsReducer,
+    comunidadUpdateProfileReducer
+
+ }from '../reducers/communityReducers';
+
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
@@ -39,6 +45,8 @@ const reducer = combineReducers({
     consumosParcelaList: consumosParcelaListReducer,
     datosAdicionalesParcelaList: datosAdicionalesParcelaListReducer,
     pagosParcelaList: pagosParcelaListReducer,
+    comunidadDetails: comunidadDetailsReducer,
+    comunidadUpdateProfile: comunidadUpdateProfileReducer
 
 });
 
