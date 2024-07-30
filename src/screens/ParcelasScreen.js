@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import CaracteristicasParcela from '../components/CaracteristicasParcela';
+import SidebarUsers from '../components/SidebarUsers';
 import SidebarParcela from '../components/SidebarParcela';
 import { listCaracteristicasParcela } from '../actions/parcelaAction';
 
@@ -17,17 +18,21 @@ const ParcelasScreen = () => {
 
     return (
         <>
-            <h3>Parcelas</h3>
             <Row>
-                <CaracteristicasParcela 
-                    loading={loading}
-                    error={error}
-                    caracteristicas={caracteristicas}
-                />
+                <Col md={3}>
+                    <SidebarUsers />
+                </Col>
+                <Col md={9}>
+                    <CaracteristicasParcela
+                        loading={loading}
+                        error={error}
+                        caracteristicas={caracteristicas}
+                    />
+                    <SidebarParcela />
+                </Col>
+
             </Row>
-            <Row>
-                <SidebarParcela />
-            </Row>
+
         </>
     );
 };

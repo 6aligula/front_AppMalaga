@@ -1,0 +1,8 @@
+/* /* styles/UsosParcela.css */
+.small-font {
+    font-size: 12px; /* Ajusta el tamaño según sea necesario */
+}
+.small-font-text {
+    font-size: 14px; /* Ajusta el tamaño según sea necesario */
+    min-width: 120px;
+}

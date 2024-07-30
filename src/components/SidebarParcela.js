@@ -8,6 +8,7 @@ import DatosAdicionales from '../components/DatosAdicionales';
 import ControlDePagos from '../components/ControlDePagos';
 import ContadoresMedidas from '../components/ContadoresMedidas';
 import Consumos from '../components/Consumos';
+import './styles/SidebarParcela.css';
 
 const SidebarParcela = () => {
 
@@ -51,11 +52,11 @@ const SidebarParcela = () => {
                             <Navbar.Toggle aria-controls="responsive-sidebar-nav" />
                             <Navbar.Collapse id="responsive-sidebar-nav">
                                 <Nav >
-                                    <Nav.Link onClick={() => setSelectedComponent('UsosParcela')}>Usos en Parcela</Nav.Link>
-                                    <Nav.Link onClick={() => setSelectedComponent('ContadoresMedidas')}>Contadores/Medidas</Nav.Link>
-                                    <Nav.Link onClick={() => setSelectedComponent('Consumos')}>Consumos</Nav.Link>
-                                    <Nav.Link onClick={() => setSelectedComponent('DatosAdicionales')}>Datos Adicionales</Nav.Link>
-                                    <Nav.Link onClick={() => setSelectedComponent('ControlDePagos')}>Control de Pagos</Nav.Link>
+                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('UsosParcela')}>Usos en Parcela</Nav.Link>
+                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('ContadoresMedidas')}>Contadores/Medidas</Nav.Link>
+                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('Consumos')}>Consumos</Nav.Link>
+                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('DatosAdicionales')}>Datos Adicionales</Nav.Link>
+                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('ControlDePagos')}>Control de Pagos</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

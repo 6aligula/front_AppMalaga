@@ -26,6 +26,9 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
         // Por ejemplo, podrías hacer una llamada a una acción de Redux para actualizar la información
     };
 
+    // Obtener el nombre de usuario del primer usuario en el array de usuarios
+    const usuario = data.plot?.properties?.usuarios?.[0]?.username || '';
+
     return (
         <Card className='mb-3'>
             <Card.Header>Características de las parcelas</Card.Header>
@@ -101,7 +104,7 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Label>Propietario</Form.Label>
                                     <Form.Control
                                         type="text"
-                                        value={formData.usuario ?? ""}
+                                        value={usuario ?? ""}
                                         readOnly={!isAdmin}
                                         onChange={isAdmin ? handleInputChange("usuario") : undefined}
                                     />

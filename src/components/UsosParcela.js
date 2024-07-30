@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Form, Table } from 'react-bootstrap';
+import { Card, Form, ListGroup, Row, Col } from 'react-bootstrap';
 
 const UsosParcela = ({ usos }) => {
     const [edits, setEdits] = useState(usos);
@@ -17,102 +17,112 @@ const UsosParcela = ({ usos }) => {
     return (
         <Card className="mb-3">
             <Card.Body>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>Tipo de uso</th>
-                            <th>Cultivo</th>
-                            <th>Superficie</th>
-                            <th>Sistema de riego</th>
-                            <th>Estado</th>
-                            <th>Fecha de alta</th>
-                            <th>Fecha de baja</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {edits.map((uso, index) => (
-                            <tr key={index}>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.tipo_uso || 'Vacio'}
-                                            onChange={handleChange(index, 'tipo_uso')}
-                                        />
-                                    ) : (
-                                        uso.tipo_uso || 'Vacio'
-                                    )}
-                                </td>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.cultivo || 'Vacio'}
-                                            onChange={handleChange(index, 'cultivo')}
-                                        />
-                                    ) : (
-                                        uso.cultivo || 'Vacio'
-                                    )}
-                                </td>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.superficie || 'Vacio'}
-                                            onChange={handleChange(index, 'superficie')}
-                                        />
-                                    ) : (
-                                        uso.superficie || 'Vacio'
-                                    )}
-                                </td>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.sistema_riego || 'Vacio'}
-                                            onChange={handleChange(index, 'sistema_riego')}
-                                        />
-                                    ) : (
-                                        uso.sistema_riego || 'Vacio'
-                                    )}
-                                </td>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.estado || 'Vacio'}
-                                            onChange={handleChange(index, 'estado')}
-                                        />
-                                    ) : (
-                                        uso.estado || 'Vacio'
-                                    )}
-                                </td>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.fecha_alta || 'Vacio'}
-                                            onChange={handleChange(index, 'fecha_alta')}
-                                        />
-                                    ) : (
-                                        uso.fecha_alta || 'Vacio'
-                                    )}
-                                </td>
-                                <td>
-                                    {isAdmin ? (
-                                        <Form.Control
-                                            type="text"
-                                            value={uso.fecha_baja || 'Vacio'}
-                                            onChange={handleChange(index, 'fecha_baja')}
-                                        />
-                                    ) : (
-                                        uso.fecha_baja || 'Vacio'
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                {edits.map((uso, index) => (
+                    <React.Fragment key={index}>
+                        <Row className="mb-3">
+                            <Col md={6}>
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item>
+                                        <strong>Tipo de uso: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.tipo_uso || 'Vacio'}
+                                                onChange={handleChange(index, 'tipo_uso')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.tipo_uso || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <strong>Cultivo: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.cultivo || 'Vacio'}
+                                                onChange={handleChange(index, 'cultivo')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.cultivo || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <strong>Superficie: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.superficie || 'Vacio'}
+                                                onChange={handleChange(index, 'superficie')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.superficie || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                </ListGroup>
+                            </Col>
+                            <Col md={6}>
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item>
+                                        <strong>Sistema de riego: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.sistema_riego || 'Vacio'}
+                                                onChange={handleChange(index, 'sistema_riego')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.sistema_riego || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <strong>Estado: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.estado || 'Vacio'}
+                                                onChange={handleChange(index, 'estado')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.estado || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <strong>Fecha de alta: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.fecha_alta || 'Vacio'}
+                                                onChange={handleChange(index, 'fecha_alta')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.fecha_alta || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <strong>Fecha de baja: </strong>
+                                        {isAdmin ? (
+                                            <Form.Control
+                                                type="text"
+                                                value={uso.fecha_baja || 'Vacio'}
+                                                onChange={handleChange(index, 'fecha_baja')}
+                                                className="small-font-text"
+                                            />
+                                        ) : (
+                                            <span className="small-font-text">{uso.fecha_baja || 'Vacio'}</span>
+                                        )}
+                                    </ListGroup.Item>
+                                </ListGroup>
+                            </Col>
+                        </Row>
+                        <hr />
+                    </React.Fragment>
+                ))}
             </Card.Body>
         </Card>
     );

@@ -1,28 +1,4 @@
-.sidebar {
-    width: 250px;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-    border-right: 1px solid #ddd;
-}
-
-.navbar {
-    padding: 0;
-}
-
-.nav-link {
-    color: #000;
-    padding: 10px 20px;
-}
-
-.nav-link:hover {
-    background-color: #e9ecef;
-}
-
-.nav-link.active {
-    background-color: #007bff;
-    color: #fff !important;
-}
-
-.navbar-toggler {
-    margin: 1rem;
+/* /* styles/SidebarParcela.css */
+.small-font {
+    font-size: 13px; /* Ajusta el tamaño según sea necesario */
 }

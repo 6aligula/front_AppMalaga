@@ -22,7 +22,6 @@ import {
     datosAdicionalesParcelaListReducer,
     pagosParcelaListReducer,
 
-
  } from '../reducers/parcelaReducers';
 
  import {
@@ -30,6 +29,10 @@ import {
     comunidadUpdateProfileReducer
 
  }from '../reducers/communityReducers';
+
+ import {
+    plotListReducer,
+ } from '../reducers/plotReducer';
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -46,7 +49,8 @@ const reducer = combineReducers({
     datosAdicionalesParcelaList: datosAdicionalesParcelaListReducer,
     pagosParcelaList: pagosParcelaListReducer,
     comunidadDetails: comunidadDetailsReducer,
-    comunidadUpdateProfile: comunidadUpdateProfileReducer
+    comunidadUpdateProfile: comunidadUpdateProfileReducer,
+    plotList: plotListReducer,
 
 });
 

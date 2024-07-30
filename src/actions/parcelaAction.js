@@ -143,7 +143,7 @@ export const listCaracteristicasParcela = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.get('/api/parcelas/caracteristicas-parcela/', config);
-        //console.log(data);
+        console.log(data);
 
         dispatch({
             type: PARCELA_CARACTERISTICAS_LIST_SUCCESS,
