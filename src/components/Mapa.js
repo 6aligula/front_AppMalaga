@@ -17,24 +17,34 @@ const Mapa = () => {
   const { loading, error, plots } = plotList;
 
   const [position, setPosition] = useState([36.7213028, -4.4216366]);
-  const [polygon, setPolygon] = useState([]);
+  const [polygons, setPolygons] = useState([]);
+  const [selectedPlot, setSelectedPlot] = useState(null);
 
   useEffect(() => {
     dispatch(listPlots());
   }, [dispatch]);
 
   useEffect(() => {
-    //console.log('Plots:', plots);
-    if (plots.features && plots.features.length > 0) {
-      const firstFeature = plots.features[0];
-      if (firstFeature.geometry && firstFeature.geometry.coordinates) {
-        const coordinates = firstFeature.geometry.coordinates[0];
-        const correctedCoordinates = coordinates.map(coord => [coord[1], coord[0]]);
-        setPosition(correctedCoordinates[0]);
-        setPolygon(correctedCoordinates);
-      }
+    if (plots && plots.features && plots.features.length > 0) {
+      const allPolygons = plots.features.map(feature => {
+        const coordinates = feature.geometry.coordinates[0];
+        return coordinates.map(coord => [coord[1], coord[0]]);
+      });
+      setPosition(allPolygons[0][0]);  // Centrar en la primera parcela
+      setPolygons(allPolygons);
+      setSelectedPlot(plots.features[0]); // Selecciona la primera parcela por defecto
     }
   }, [plots]);
+
+  const handlePlotChange = (event) => {
+    const plotId = event.target.value;
+    const plot = plots.features.find(feature => feature.id === parseInt(plotId));
+    if (plot) {
+      const coordinates = plot.geometry.coordinates[0].map(coord => [coord[1], coord[0]]);
+      setPosition(coordinates[0]);
+      setSelectedPlot(plot);
+    }
+  };
 
   return (
     <div>
@@ -43,14 +53,25 @@ const Mapa = () => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <MapContainer center={position} zoom={13} style={{ height: '400px', width: '100%' }}>
-          <ChangeView center={position} />
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; Contributors'
-          />
-          {polygon.length > 0 && <Polygon positions={polygon} />}
-        </MapContainer>
+        plots && plots.features && (
+          <>
+            <select onChange={handlePlotChange} value={selectedPlot ? selectedPlot.id : ''}>
+              {plots.features.map(plot => (
+                <option key={plot.id} value={plot.id}>{plot.properties.name}</option>
+              ))}
+            </select>
+            <MapContainer center={position} zoom={13} style={{ height: '400px', width: '100%' }}>
+              <ChangeView center={position} />
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; Contributors'
+              />
+              {polygons.map((polygon, index) => (
+                <Polygon key={index} positions={polygon} />
+              ))}
+            </MapContainer>
+          </>
+        )
       )}
     </div>
   );
