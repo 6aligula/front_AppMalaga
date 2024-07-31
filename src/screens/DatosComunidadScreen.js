@@ -13,12 +13,6 @@ import CargosComunidad from '../components/CargosComunidad';
 
 const DatosComunidadScreen = () => {
     const [comunidadData, setComunidadData] = useState([]);
-    // const handleComunidadUpdate = (newData) => {
-    //     setComunidadData(prevData => [
-    //         ...prevData.filter(com => com.id !== newData.id), // Remueve la comunidad actualizada
-    //         newData // Agrega la comunidad actualizada
-    //     ]);
-    // };
 
     const handleComunidadUpdate = (newData) => {
         setComunidadData(prevData => {
@@ -58,7 +52,7 @@ const DatosComunidadScreen = () => {
     useEffect(() => {
         if (comunidad) {
             setComunidadData(comunidad);
-            console.log('comunidad');
+            //console.log('comunidad');
         }
     }, [comunidad]);
 
@@ -83,6 +77,7 @@ const DatosComunidadScreen = () => {
                     <>
                         {comunidadData.map(comunidad => (
                             <React.Fragment key={comunidad.id}>
+                                <h3>{comunidad.nombre}</h3> {/* Añadir título para la comunidad */}
                                 <DatosComunidades
                                     comunidadData={comunidad}
                                     isAdmin={userInfo ? userInfo.isAdmin : false}
@@ -98,6 +93,7 @@ const DatosComunidadScreen = () => {
                                     isAdmin={userInfo ? userInfo.isAdmin : false}
                                     onUpdate={handleComunidadUpdate}
                                 />
+                                <hr/>
                             </React.Fragment>
                         ))}
                         {userInfo && userInfo.isAdmin && (

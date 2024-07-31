@@ -71,6 +71,7 @@ export const getComunidadDetails = (id) => async (dispatch, getState) => {
             `/api/community/all`,
             config
         )
+        //console.log("Details from community: ", data);
 
         dispatch({
             type: COMUNIDAD_DETAILS_SUCCESS,
