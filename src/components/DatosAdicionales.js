@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { Card, Form, Table } from 'react-bootstrap';
-import { listDatosAdicionalesParcela } from '../actions/parcelaAction';
 
-const DatosAdicionales = () => {
-    const dispatch = useDispatch();
-
-    const datosAdicionalesParcelaList = useSelector(state => state.datosAdicionalesParcelaList);
-    const { loading, error, datosAdicionales } = datosAdicionalesParcelaList;
-
-    const [edits, setEdits] = useState([]);
-
-    useEffect(() => {
-        dispatch(listDatosAdicionalesParcela());
-    }, [dispatch]);
+const DatosAdicionales = ({ datosAdicionales }) => {
+    const [edits, setEdits] = useState(datosAdicionales);
 
     useEffect(() => {
         setEdits(datosAdicionales);
@@ -31,10 +20,8 @@ const DatosAdicionales = () => {
     return (
         <Card className="mb-3">
             <Card.Body>
-                {loading ? (
-                    <div>Loading...</div>
-                ) : error ? (
-                    <div>{error}</div>
+                {datosAdicionales.length === 0 ? (
+                    <div>No hay datos adicionales disponibles.</div>
                 ) : (
                     <Table striped bordered hover>
                         <thead>

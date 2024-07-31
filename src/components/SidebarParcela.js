@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nav, Navbar, Container, Row, Card } from 'react-bootstrap';
-import { listUsosParcela, listContadoresParcela, listConsumosParcela } from '../actions/parcelaAction';
+import { listUsosParcela, listContadoresParcela, listConsumosParcela, listDatosAdicionalesParcela } from '../actions/parcelaAction';
 import UsosParcela from '../components/UsosParcela';
 import DatosAdicionales from '../components/DatosAdicionales';
 import ControlDePagos from '../components/ControlDePagos';
@@ -23,10 +23,15 @@ const SidebarParcela = ({ parcela }) => {
     const consumosParcelaList = useSelector(state => state.consumosParcelaList);
     const { loading: loadingConsumos, error: errorConsumos, consumos } = consumosParcelaList;
 
+    const datosAdicionalesParcelaList = useSelector(state => state.datosAdicionalesParcelaList);
+    const { loading: loadingDatosAdicionales, error: errorDatosAdicionales, datosAdicionales } = datosAdicionalesParcelaList;
+
     useEffect(() => {
         dispatch(listUsosParcela());
         dispatch(listContadoresParcela());
         dispatch(listConsumosParcela());
+        dispatch(listDatosAdicionalesParcela());
+
     }, [dispatch]);
 
 
@@ -37,6 +42,7 @@ const SidebarParcela = ({ parcela }) => {
         const filteredUsos = usosParcela.filter(uso => uso.parcela === parcela?.id);
         const filteredContadores = contadores.filter(contador => contador.parcela === parcela?.id);
         const filteredConsumos = consumos.filter(consumo => consumo.parcela === parcela?.id);
+        const filteredDatosAdicionales = datosAdicionales.filter(dato => dato.parcela === parcela?.id);
 
         switch (selectedComponent) {
             case 'UsosParcela':
@@ -46,7 +52,7 @@ const SidebarParcela = ({ parcela }) => {
             case 'Consumos':
                 return <Consumos consumos={filteredConsumos} />;
             case 'DatosAdicionales':
-                return <DatosAdicionales />;
+                return <DatosAdicionales datosAdicionales={filteredDatosAdicionales} />;
             case 'ControlDePagos':
                 return <ControlDePagos />;
             default:
@@ -76,7 +82,7 @@ const SidebarParcela = ({ parcela }) => {
             </Row>
 
             <Row>
-                {loading || loadingContadores || loadingConsumos ? <div>Loading...</div> : error || errorContadores || errorConsumos ? <div>{error || errorContadores || errorConsumos}</div> : renderComponent()}
+                {loading || loadingContadores || loadingConsumos || loadingDatosAdicionales ? <div>Loading...</div> : error || errorContadores || errorConsumos || errorDatosAdicionales ? <div>{error || errorContadores || errorConsumos || errorDatosAdicionales}</div> : renderComponent()}
             </Row>
         </>
     );
