@@ -72,33 +72,33 @@ export const listDatosAdicionalesParcela = () => async (dispatch, getState) => {
 
 
 export const listConsumosParcela = () => async (dispatch, getState) => {
-   try{
-         dispatch({ type: PARCELA_CONSUMOS_LIST_REQUEST });
-    
-         const { userLogin: { userInfo } } = getState();
-    
-         const config = {
-              headers: {
+    try {
+        dispatch({ type: PARCELA_CONSUMOS_LIST_REQUEST });
+
+        const { userLogin: { userInfo } } = getState();
+
+        const config = {
+            headers: {
                 Authorization: `Bearer ${userInfo.token}`
-              }
-         };
-    
-         const { data } = await axios.get('/api/parcelas/consumos/', config);
-         //console.log(data);
-    
-         dispatch({
-              type: PARCELA_CONSUMOS_LIST_SUCCESS,
-              payload: data
-         });
-    
-   }catch (error) {
-    dispatch({
-        type: PARCELA_CONSUMOS_LIST_FAIL,
-        payload: error.response && error.response.data.detail 
-            ? error.response.data.detail 
-            : error.message,
-    });
-}
+            }
+        };
+
+        const { data } = await axios.get('/api/parcelas/consumos/', config);
+        //console.log("consumos de la parcela: ", data);
+
+        dispatch({
+            type: PARCELA_CONSUMOS_LIST_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: PARCELA_CONSUMOS_LIST_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        });
+    }
 }
 
 export const listContadoresParcela = () => async (dispatch, getState) => {
@@ -114,7 +114,7 @@ export const listContadoresParcela = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.get('/api/parcelas/contadores-medidas/', config);
-        console.log("contadores parcelas: ",data);
+        //console.log("contadores parcelas: ",data);
 
         dispatch({
             type: PARCELA_CONTADORES_LIST_SUCCESS,

@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { Card, Form, Table } from 'react-bootstrap';
-import { listConsumosParcela } from '../actions/parcelaAction';
 
-const Consumos = () => {
-    const dispatch = useDispatch();
-
-    const consumosParcelaList = useSelector(state => state.consumosParcelaList);
-    const { loading, error, consumos } = consumosParcelaList;
-
-    const [edits, setEdits] = useState([]);
-
-    useEffect(() => {
-        dispatch(listConsumosParcela());
-    }, [dispatch]);
+const Consumos = ({ consumos }) => {
+    const [edits, setEdits] = useState(consumos);
 
     useEffect(() => {
         setEdits(consumos);
@@ -31,10 +20,8 @@ const Consumos = () => {
     return (
         <Card className="mb-3">
             <Card.Body>
-                {loading ? (
-                    <div>Loading...</div>
-                ) : error ? (
-                    <div>{error}</div>
+                {consumos.length === 0 ? (
+                    <div>No hay consumos disponibles.</div>
                 ) : (
                     <Table striped bordered hover>
                         <thead>

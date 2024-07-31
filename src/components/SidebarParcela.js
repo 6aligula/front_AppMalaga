@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nav, Navbar, Container, Row, Card } from 'react-bootstrap';
-import { listUsosParcela, listContadoresParcela } from '../actions/parcelaAction';
+import { listUsosParcela, listContadoresParcela, listConsumosParcela } from '../actions/parcelaAction';
 import UsosParcela from '../components/UsosParcela';
 import DatosAdicionales from '../components/DatosAdicionales';
 import ControlDePagos from '../components/ControlDePagos';
@@ -10,7 +10,7 @@ import ContadoresMedidas from '../components/ContadoresMedidas';
 import Consumos from '../components/Consumos';
 import './styles/SidebarParcela.css';
 
-const SidebarParcela = ({parcela}) => {
+const SidebarParcela = ({ parcela }) => {
 
     const dispatch = useDispatch();
 
@@ -20,9 +20,13 @@ const SidebarParcela = ({parcela}) => {
     const contadoresParcelaList = useSelector(state => state.contadoresParcelaList);
     const { loading: loadingContadores, error: errorContadores, contadores } = contadoresParcelaList;
 
+    const consumosParcelaList = useSelector(state => state.consumosParcelaList);
+    const { loading: loadingConsumos, error: errorConsumos, consumos } = consumosParcelaList;
+
     useEffect(() => {
         dispatch(listUsosParcela());
         dispatch(listContadoresParcela());
+        dispatch(listConsumosParcela());
     }, [dispatch]);
 
 
@@ -32,20 +36,21 @@ const SidebarParcela = ({parcela}) => {
     const renderComponent = () => {
         const filteredUsos = usosParcela.filter(uso => uso.parcela === parcela?.id);
         const filteredContadores = contadores.filter(contador => contador.parcela === parcela?.id);
+        const filteredConsumos = consumos.filter(consumo => consumo.parcela === parcela?.id);
 
         switch (selectedComponent) {
             case 'UsosParcela':
                 return <UsosParcela usos={filteredUsos} />;
             case 'ContadoresMedidas':
-                return <ContadoresMedidas contadores={filteredContadores}/>;
+                return <ContadoresMedidas contadores={filteredContadores} />;
             case 'Consumos':
-                return <Consumos />;
+                return <Consumos consumos={filteredConsumos} />;
             case 'DatosAdicionales':
                 return <DatosAdicionales />;
             case 'ControlDePagos':
                 return <ControlDePagos />;
             default:
-                return <UsosParcela usos={filteredUsos}/>;
+                return <UsosParcela usos={filteredUsos} />;
         }
     };
 
@@ -71,7 +76,7 @@ const SidebarParcela = ({parcela}) => {
             </Row>
 
             <Row>
-                {loading || loadingContadores ? <div>Loading...</div> : error || errorContadores ? <div>{error || errorContadores}</div> : renderComponent()}
+                {loading || loadingContadores || loadingConsumos ? <div>Loading...</div> : error || errorContadores || errorConsumos ? <div>{error || errorContadores || errorConsumos}</div> : renderComponent()}
             </Row>
         </>
     );
