@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { Card, Form, Table } from 'react-bootstrap';
-import { listPagosParcela } from '../actions/parcelaAction';
 
-const ControlDePagos = () => {
-    const dispatch = useDispatch();
-
-    const pagosParcelaList = useSelector(state => state.pagosParcelaList);
-    const { loading, error, controlDePagos } = pagosParcelaList;
-
-    const [edits, setEdits] = useState([]);
-    console.log(controlDePagos);
+const ControlDePagos = ({ pagos }) => {
+    const [edits, setEdits] = useState(pagos);
 
     useEffect(() => {
-        dispatch(listPagosParcela());
-    }, [dispatch]);
+        setEdits(pagos);
+    }, [pagos]);
 
-    useEffect(() => {
-        setEdits(controlDePagos);
-    }, [controlDePagos]);
-
-    const isAdmin = controlDePagos.length > 0 ? controlDePagos[0].isAdmin : false;
+    const isAdmin = pagos.length > 0 ? pagos[0].isAdmin : false;
 
     const handleChange = (index, field) => e => {
         const value = e.target.value || 'Vacio';
@@ -32,10 +20,8 @@ const ControlDePagos = () => {
     return (
         <Card className="mb-3">
             <Card.Body>
-                {loading ? (
-                    <div>Loading...</div>
-                ) : error ? (
-                    <div>{error}</div>
+                {pagos.length === 0 ? (
+                    <div>No hay pagos disponibles.</div>
                 ) : (
                     <Table striped bordered hover>
                         <thead>
@@ -84,7 +70,6 @@ const ControlDePagos = () => {
                                             pago.id || 'No proporcionado'
                                         )}
                                     </td>
-                                
                                     <td>
                                         {isAdmin ? (
                                             <Form.Control

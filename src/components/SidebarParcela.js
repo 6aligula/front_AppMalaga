@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nav, Navbar, Container, Row, Card } from 'react-bootstrap';
-import { listUsosParcela, listContadoresParcela, listConsumosParcela, listDatosAdicionalesParcela } from '../actions/parcelaAction';
+import { listUsosParcela, listContadoresParcela, listConsumosParcela, listDatosAdicionalesParcela, listPagosParcela } from '../actions/parcelaAction';
 import UsosParcela from '../components/UsosParcela';
 import DatosAdicionales from '../components/DatosAdicionales';
 import ControlDePagos from '../components/ControlDePagos';
@@ -26,23 +26,33 @@ const SidebarParcela = ({ parcela }) => {
     const datosAdicionalesParcelaList = useSelector(state => state.datosAdicionalesParcelaList);
     const { loading: loadingDatosAdicionales, error: errorDatosAdicionales, datosAdicionales } = datosAdicionalesParcelaList;
 
+    const pagosParcelaList = useSelector(state => state.pagosParcelaList);
+    const { loading: loadingPagos, error: errorPagos, controlDePagos } = pagosParcelaList;
+
     useEffect(() => {
         dispatch(listUsosParcela());
         dispatch(listContadoresParcela());
         dispatch(listConsumosParcela());
         dispatch(listDatosAdicionalesParcela());
+        dispatch(listPagosParcela());
 
     }, [dispatch]);
 
-
-
     const [selectedComponent, setSelectedComponent] = useState('UsosParcela');
+
+    useEffect(() => {
+        // Keep selectedComponent when parcel changes
+        if (!parcela) {
+            setSelectedComponent('UsosParcela');
+        }
+    }, [parcela]);
 
     const renderComponent = () => {
         const filteredUsos = usosParcela.filter(uso => uso.parcela === parcela?.id);
         const filteredContadores = contadores.filter(contador => contador.parcela === parcela?.id);
         const filteredConsumos = consumos.filter(consumo => consumo.parcela === parcela?.id);
         const filteredDatosAdicionales = datosAdicionales.filter(dato => dato.parcela === parcela?.id);
+        const filteredPagos = controlDePagos.filter(pago => pago.parcela === parcela?.id);
 
         switch (selectedComponent) {
             case 'UsosParcela':
@@ -54,7 +64,7 @@ const SidebarParcela = ({ parcela }) => {
             case 'DatosAdicionales':
                 return <DatosAdicionales datosAdicionales={filteredDatosAdicionales} />;
             case 'ControlDePagos':
-                return <ControlDePagos />;
+                return <ControlDePagos pagos={filteredPagos} />;
             default:
                 return <UsosParcela usos={filteredUsos} />;
         }
@@ -69,11 +79,41 @@ const SidebarParcela = ({ parcela }) => {
                             <Navbar.Toggle aria-controls="responsive-sidebar-nav" />
                             <Navbar.Collapse id="responsive-sidebar-nav">
                                 <Nav >
-                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('UsosParcela')}>Usos en Parcela</Nav.Link>
-                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('ContadoresMedidas')}>Contadores/Medidas</Nav.Link>
-                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('Consumos')}>Consumos</Nav.Link>
-                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('DatosAdicionales')}>Datos Adicionales</Nav.Link>
-                                    <Nav.Link className="small-font" onClick={() => setSelectedComponent('ControlDePagos')}>Control de Pagos</Nav.Link>
+                                    <Nav.Link
+                                        className="small-font"
+                                        onClick={() => setSelectedComponent('UsosParcela')}
+                                        active={selectedComponent === 'UsosParcela'}
+                                    >
+                                        Usos en Parcela
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        className="small-font"
+                                        onClick={() => setSelectedComponent('ContadoresMedidas')}
+                                        active={selectedComponent === 'ContadoresMedidas'}
+                                    >
+                                        Contadores/Medidas
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        className="small-font"
+                                        onClick={() => setSelectedComponent('Consumos')}
+                                        active={selectedComponent === 'Consumos'}
+                                    >
+                                        Consumos
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        className="small-font"
+                                        onClick={() => setSelectedComponent('DatosAdicionales')}
+                                        active={selectedComponent === 'DatosAdicionales'}
+                                    >
+                                        Datos Adicionales
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        className="small-font"
+                                        onClick={() => setSelectedComponent('ControlDePagos')}
+                                        active={selectedComponent === 'ControlDePagos'}
+                                    >
+                                        Control de Pagos
+                                    </Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
@@ -82,7 +122,11 @@ const SidebarParcela = ({ parcela }) => {
             </Row>
 
             <Row>
-                {loading || loadingContadores || loadingConsumos || loadingDatosAdicionales ? <div>Loading...</div> : error || errorContadores || errorConsumos || errorDatosAdicionales ? <div>{error || errorContadores || errorConsumos || errorDatosAdicionales}</div> : renderComponent()}
+                {loading || loadingContadores || loadingConsumos || loadingDatosAdicionales || loadingPagos
+                    ? <div>Loading...</div>
+                    : error || errorContadores || errorConsumos || errorDatosAdicionales || errorPagos
+                        ? <div>{error || errorContadores || errorConsumos || errorDatosAdicionales || errorPagos}</div>
+                        : renderComponent()}
             </Row>
         </>
     );
