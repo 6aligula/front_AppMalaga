@@ -10,7 +10,7 @@ import ContadoresMedidas from '../components/ContadoresMedidas';
 import Consumos from '../components/Consumos';
 import './styles/SidebarParcela.css';
 
-const SidebarParcela = () => {
+const SidebarParcela = ({parcela}) => {
 
     const dispatch = useDispatch();
 
@@ -27,9 +27,11 @@ const SidebarParcela = () => {
     const [selectedComponent, setSelectedComponent] = useState('UsosParcela');
 
     const renderComponent = () => {
+        const filteredUsos = usosParcela.filter(uso => uso.parcela === parcela?.id);
+
         switch (selectedComponent) {
             case 'UsosParcela':
-                return <UsosParcela usos={usosParcela} />;
+                return <UsosParcela usos={filteredUsos} />;
             case 'ContadoresMedidas':
                 return <ContadoresMedidas />;
             case 'Consumos':
@@ -39,7 +41,7 @@ const SidebarParcela = () => {
             case 'ControlDePagos':
                 return <ControlDePagos />;
             default:
-                return <UsosParcela usos={usosParcela}/>;
+                return <UsosParcela usos={filteredUsos}/>;
         }
     };
 

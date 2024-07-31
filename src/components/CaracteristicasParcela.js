@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Card, Spinner, Alert, Button } from 'react-bootstrap';
 
-const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
-    const data = useMemo(() => {
-        return Array.isArray(caracteristicas) && caracteristicas.length > 0 ? caracteristicas[0] : {};
-    }, [caracteristicas]);    const isAdmin = data.isAdmin; // Variable para saber si es admin
-
-    const [formData, setFormData] = useState(data);
+const CaracteristicasParcela = ({ loading, error, parcela }) => {
+    const [formData, setFormData] = useState(parcela || {});
 
     useEffect(() => {
-        setFormData(data);
-    }, [data]);
+        setFormData(parcela || {});
+    }, [parcela]);
+
+    if (!parcela) {
+        return null;
+    }
 
     const handleInputChange = (field) => (event) => {
         setFormData({
@@ -21,13 +21,10 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Aquí puedes agregar la lógica para enviar el formulario
-        //console.log('Formulario enviado:', formData);
-        // Por ejemplo, podrías hacer una llamada a una acción de Redux para actualizar la información
+        // Lógica para enviar el formulario
     };
 
-    // Obtener el nombre de usuario del primer usuario en el array de usuarios
-    const usuario = data.plot?.properties?.usuarios?.[0]?.username || '';
+    const usuario = parcela?.plot?.properties?.usuarios?.[0]?.username || '';
 
     return (
         <Card className='mb-3'>
@@ -46,8 +43,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.identificacion ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("identificacion") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("identificacion") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -57,8 +54,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.sup_total ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("sup_total") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("sup_total") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -68,8 +65,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.num_olivos ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("num_olivos") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("num_olivos") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -81,8 +78,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.parcela_catastral ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("parcela_catastral") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("parcela_catastral") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -92,8 +89,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.sup_regable ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("sup_regable") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("sup_regable") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -105,8 +102,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={usuario ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("usuario") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("usuario") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -118,8 +115,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.concesion ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("concesion") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("concesion") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -129,8 +126,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.toma_agua ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("toma_agua") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("toma_agua") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -142,8 +139,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.suelo ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("suelo") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("suelo") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -153,8 +150,8 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.paraje ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("paraje") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("paraje") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
@@ -166,13 +163,13 @@ const CaracteristicasParcela = ({ loading, error, caracteristicas }) => {
                                     <Form.Control
                                         type="text"
                                         value={formData.fecha_alta ?? ""}
-                                        readOnly={!isAdmin}
-                                        onChange={isAdmin ? handleInputChange("fecha_alta") : undefined}
+                                        readOnly={!parcela.isAdmin}
+                                        onChange={parcela.isAdmin ? handleInputChange("fecha_alta") : undefined}
                                     />
                                 </Form.Group>
                             </Col>
                         </Row>
-                        {isAdmin && (
+                        {parcela.isAdmin && (
                             <Button type="submit" variant="primary">Guardar Cambios</Button>
                         )}
                     </Form>

@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Form, ListGroup, Row, Col } from 'react-bootstrap';
 
 const UsosParcela = ({ usos }) => {
     const [edits, setEdits] = useState(usos);
+
+    useEffect(() => {
+        setEdits(usos);
+    }, [usos]);
 
     const isAdmin = usos.length > 0 ? usos[0].isAdmin : false;
 
@@ -11,7 +15,7 @@ const UsosParcela = ({ usos }) => {
         const updatedUsos = [...edits];
         updatedUsos[index][field] = value;
         setEdits(updatedUsos);
-        //onUpdate(updatedUsos);
+        // onUpdate(updatedUsos);
     };
 
     return (

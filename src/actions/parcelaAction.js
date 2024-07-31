@@ -114,7 +114,7 @@ export const listContadoresParcela = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.get('/api/parcelas/contadores-medidas/', config);
-        //console.log(data);
+        console.log("contadores parcelas: ",data);
 
         dispatch({
             type: PARCELA_CONTADORES_LIST_SUCCESS,
@@ -143,7 +143,7 @@ export const listCaracteristicasParcela = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.get('/api/parcelas/caracteristicas-parcela/', config);
-        console.log(data);
+        //console.log("caracteristicas de la parcela: ", data);
 
         dispatch({
             type: PARCELA_CARACTERISTICAS_LIST_SUCCESS,
@@ -172,6 +172,8 @@ export const listUsosParcela = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.get('/api/parcelas/usos-parcela/', config);
+
+        console.log("usos de la parcela: ", data);
 
         dispatch({
             type: PARCELA_USOS_LIST_SUCCESS,
