@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nav, Navbar, Container, Row, Card } from 'react-bootstrap';
-import { listUsosParcela } from '../actions/parcelaAction';
+import { listUsosParcela, listContadoresParcela } from '../actions/parcelaAction';
 import UsosParcela from '../components/UsosParcela';
 import DatosAdicionales from '../components/DatosAdicionales';
 import ControlDePagos from '../components/ControlDePagos';
@@ -16,10 +16,13 @@ const SidebarParcela = ({parcela}) => {
 
     const usosParcelaList = useSelector(state => state.usosParcelaList);
     const { loading, error, usosParcela } = usosParcelaList;
-    //console.log(usosParcela);
+
+    const contadoresParcelaList = useSelector(state => state.contadoresParcelaList);
+    const { loading: loadingContadores, error: errorContadores, contadores } = contadoresParcelaList;
 
     useEffect(() => {
         dispatch(listUsosParcela());
+        dispatch(listContadoresParcela());
     }, [dispatch]);
 
 
@@ -28,12 +31,13 @@ const SidebarParcela = ({parcela}) => {
 
     const renderComponent = () => {
         const filteredUsos = usosParcela.filter(uso => uso.parcela === parcela?.id);
+        const filteredContadores = contadores.filter(contador => contador.parcela === parcela?.id);
 
         switch (selectedComponent) {
             case 'UsosParcela':
                 return <UsosParcela usos={filteredUsos} />;
             case 'ContadoresMedidas':
-                return <ContadoresMedidas />;
+                return <ContadoresMedidas contadores={filteredContadores}/>;
             case 'Consumos':
                 return <Consumos />;
             case 'DatosAdicionales':
@@ -67,7 +71,7 @@ const SidebarParcela = ({parcela}) => {
             </Row>
 
             <Row>
-                {loading ? <div>Loading...</div> : error ? <div>{error}</div> : renderComponent()}
+                {loading || loadingContadores ? <div>Loading...</div> : error || errorContadores ? <div>{error || errorContadores}</div> : renderComponent()}
             </Row>
         </>
     );

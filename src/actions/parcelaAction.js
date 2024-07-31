@@ -173,7 +173,7 @@ export const listUsosParcela = () => async (dispatch, getState) => {
 
         const { data } = await axios.get('/api/parcelas/usos-parcela/', config);
 
-        console.log("usos de la parcela: ", data);
+        //console.log("usos de la parcela: ", data);
 
         dispatch({
             type: PARCELA_USOS_LIST_SUCCESS,
