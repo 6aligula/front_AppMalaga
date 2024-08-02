@@ -14,6 +14,7 @@ import {
   DatosComunidadScreen,
   DatosAguaScreen,
   ParcelasScreen,
+  CultivosScreen,
 
 } from './screens'
 import Footer from './components/Footer';
@@ -38,6 +39,7 @@ const App = () => {
             <Route path='/DatosComunidad' element={<DatosComunidadScreen />} />
             <Route path='/DatosAgua' element={<DatosAguaScreen />} />
             <Route path='/parcelario' element={<ParcelasScreen />} />
+            <Route path='/cultivos' element={<CultivosScreen />} />
 
           </Routes>
         </Container>

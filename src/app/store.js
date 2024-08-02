@@ -33,6 +33,7 @@ import {
  import {
     plotListReducer,
  } from '../reducers/plotReducer';
+import { cultivoDetailsReducer, cultivoListReducer, faseCultivoDetailsReducer } from '../reducers/cultivoReducers';
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -51,6 +52,9 @@ const reducer = combineReducers({
     comunidadDetails: comunidadDetailsReducer,
     comunidadUpdateProfile: comunidadUpdateProfileReducer,
     plotList: plotListReducer,
+    cultivoList: cultivoListReducer,
+    cultivoDetails: cultivoDetailsReducer,
+    faseCultivoDetails: faseCultivoDetailsReducer,
 
 });
 
