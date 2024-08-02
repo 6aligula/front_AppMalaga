@@ -13,3 +13,4 @@ export {default as ParcelasScreen} from './ParcelasScreen';
 export {default as CultivosScreen} from './CultivosScreen';
 export {default as DocumentosScreen} from './DocumentosScreen';
 export {default as ConsumosScreen} from './ConsumosScreen';
+export {default as IncidenciaScreen} from './IncidenciaScreen';

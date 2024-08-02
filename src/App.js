@@ -16,7 +16,8 @@ import {
   ParcelasScreen,
   CultivosScreen,
   DocumentosScreen,
-  ConsumosScreen
+  ConsumosScreen,
+  IncidenciaScreen
 
 } from './screens'
 import Footer from './components/Footer';
@@ -44,6 +45,7 @@ const App = () => {
             <Route path='/cultivos' element={<CultivosScreen />} />
             <Route path='/registro-documentos' element={<DocumentosScreen />} />
             <Route path='/peticion-consumos' element={<ConsumosScreen />} />
+            <Route path='/incidencias-mantenimiento' element={<IncidenciaScreen />} />
 
           </Routes>
         </Container>
