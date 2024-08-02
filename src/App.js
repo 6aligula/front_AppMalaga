@@ -48,6 +48,7 @@ const App = () => {
             <Route path='/peticion-consumos' element={<ConsumosScreen />} />
             <Route path='/incidencias-mantenimiento' element={<IncidenciaScreen />} />
             <Route path='/estadistica-consumo' element={<EstadisticasConsumoScreen />} />
+            <Route path='/emitir-circular' element={<EstadisticasConsumoScreen />} />
 
           </Routes>
         </Container>

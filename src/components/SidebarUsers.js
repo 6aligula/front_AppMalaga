@@ -26,7 +26,7 @@ const SidebarUsers = () => {
                             <Nav.Link as={NavLink} to="/incidencias-mantenimiento">Incidencias y Mantenimiento</Nav.Link>
                             <Nav.Link as={NavLink} to="/cultivos">Inventario de Cultivos</Nav.Link>
                             <Nav.Link as={NavLink} to="/estadistica-consumo">Estadística de Consumo</Nav.Link>
-                            <Nav.Link as={NavLink} to="/visor-planos">Visor de Planos</Nav.Link>
+                            <Nav.Link as={NavLink} to="/emitir-circular">Emitir circular</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
