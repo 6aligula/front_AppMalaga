@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Col, Row, Form, Card } from 'react-bootstrap';
 import CaracteristicasParcela from '../components/CaracteristicasParcela';
 import SidebarUsers from '../components/SidebarUsers';
@@ -9,15 +10,27 @@ import './styles/ParcelasScreen.css';
 
 const ParcelasScreen = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const caracteristicasParcelaList = useSelector(state => state.caracteristicasParcelaList);
     const { loading, error, caracteristicas } = caracteristicasParcelaList;
 
     const [selectedParcela, setSelectedParcela] = useState(null);
 
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
     useEffect(() => {
-        dispatch(listCaracteristicasParcela());
-    }, [dispatch]);
+        if (!userInfo) {
+            navigate('/login');
+        } else {
+            dispatch(listCaracteristicasParcela());
+        }
+    }, [dispatch, navigate, userInfo]);
+
+    // useEffect(() => {
+    //     dispatch(listCaracteristicasParcela());
+    // }, [dispatch]);
 
     useEffect(() => {
         if (caracteristicas.length > 0) {

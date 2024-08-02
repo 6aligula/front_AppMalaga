@@ -35,6 +35,7 @@ import {
  } from '../reducers/plotReducer';
 import { cultivoDetailsReducer, cultivoListReducer, faseCultivoDetailsReducer } from '../reducers/cultivoReducers';
 import { documentoListReducer, documentoCreateReducer, documentoDetailsReducer } from '../reducers/documentReducers';
+import { peticionCreateReducer, peticionListReducer } from '../reducers/peticionReducers';
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -59,6 +60,8 @@ const reducer = combineReducers({
     documentoList: documentoListReducer,
     documentoCreate: documentoCreateReducer,
     documentoDetails: documentoDetailsReducer,
+    peticionList: peticionListReducer,
+    peticionCreate: peticionCreateReducer,
 
 });
 
