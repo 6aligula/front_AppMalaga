@@ -1,0 +1,16 @@
+/* DocumentosScreen.css */
+.list-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.clickable {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 5px;
+}
+
+.clickable:hover {
+    background-color: #f1f1f1;
+}

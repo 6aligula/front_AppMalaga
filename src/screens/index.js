@@ -11,3 +11,4 @@ export {default as DatosComunidadScreen} from './DatosComunidadScreen';
 export {default as DatosAguaScreen} from './DatosAguaScreen';
 export {default as ParcelasScreen} from './ParcelasScreen';
 export {default as CultivosScreen} from './CultivosScreen';
+export {default as DocumentosScreen} from './DocumentosScreen';
