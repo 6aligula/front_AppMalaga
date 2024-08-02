@@ -15,3 +15,4 @@ export {default as DocumentosScreen} from './DocumentosScreen';
 export {default as ConsumosScreen} from './ConsumosScreen';
 export {default as IncidenciaScreen} from './IncidenciaScreen';
 export {default as EstadisticasConsumoScreen} from './EstadisticasConsumoScreen';
+export {default as CircularScreen} from './CircularScreen';
