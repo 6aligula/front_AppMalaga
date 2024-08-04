@@ -18,7 +18,7 @@ const SidebarUsers = () => {
                             <Nav.Link as={NavLink} to="/DatosAgua">Datos del Usuario del Agua</Nav.Link>
                             <Nav.Link as={NavLink} to="/parcelario">Parcelario</Nav.Link>
                             <Nav.Link as={NavLink} to="/peticion-consumos">Petición de Consumos</Nav.Link>
-                            <Nav.Link as={NavLink} to="/anadir-lecturas">Añadir Lecturas</Nav.Link>
+                            {/* <Nav.Link as={NavLink} to="/anadir-lecturas">Añadir Lecturas</Nav.Link> */}
                             <Nav.Link as={NavLink} to="/facturas">Facturas</Nav.Link>
                             <Nav.Link as={NavLink} to="/control-pagos">Control de Pagos</Nav.Link>
                             <Nav.Link as={NavLink} to="/generar-informes">Generar Informes</Nav.Link>

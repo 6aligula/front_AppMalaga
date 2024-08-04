@@ -38,6 +38,7 @@ import { documentoListReducer, documentoCreateReducer, documentoDetailsReducer }
 import { peticionCreateReducer, peticionListReducer } from '../reducers/peticionReducers';
 import { incidenciaCreateReducer, incidenciaListReducer } from '../reducers/incidenciaReducers';
 import { consumoEstadisticReducer } from '../reducers/consumoReducers';
+import { facturaDetailsReducer, facturaListReducer } from '../reducers/facturaReducers';
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -67,6 +68,8 @@ const reducer = combineReducers({
     incidenciaList: incidenciaListReducer,
     incidenciaCreate: incidenciaCreateReducer,
     consumoEstadistic: consumoEstadisticReducer,
+    facturaList: facturaListReducer,
+    facturaDetails: facturaDetailsReducer,
 
 });
 
