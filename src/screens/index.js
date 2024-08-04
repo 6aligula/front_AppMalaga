@@ -17,3 +17,4 @@ export {default as IncidenciaScreen} from './IncidenciaScreen';
 export {default as EstadisticasConsumoScreen} from './EstadisticasConsumoScreen';
 export {default as CircularScreen} from './CircularScreen';
 export {default as FacturasScreen} from './FacturasScreen';
+export {default as PagosScreen} from './PagosScreen';

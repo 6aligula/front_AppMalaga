@@ -20,7 +20,8 @@ import {
   IncidenciaScreen,
   EstadisticasConsumoScreen,
   CircularScreen,
-  FacturasScreen
+  FacturasScreen,
+  PagosScreen
 
 } from './screens'
 import Footer from './components/Footer';
@@ -52,6 +53,7 @@ const App = () => {
             <Route path='/estadistica-consumo' element={<EstadisticasConsumoScreen />} />
             <Route path='/emitir-circular' element={<CircularScreen />} />
             <Route path='/facturas' element={<FacturasScreen />} />
+            <Route path='/control-pagos' element={<PagosScreen />} />
 
           </Routes>
         </Container>
