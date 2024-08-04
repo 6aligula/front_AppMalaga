@@ -6,6 +6,9 @@ import {
     FACTURA_DETAILS_REQUEST,
     FACTURA_DETAILS_SUCCESS,
     FACTURA_DETAILS_FAIL,
+    FACTURA_GENERATE_PDF_REQUEST,
+    FACTURA_GENERATE_PDF_SUCCESS,
+    FACTURA_GENERATE_PDF_FAIL,
 } from '../constants/facturaConstants';
 
 export const facturaListReducer = (state = { facturas: [] }, action) => {
@@ -28,6 +31,19 @@ export const facturaDetailsReducer = (state = { pdfUrl: null }, action) => {
         case FACTURA_DETAILS_SUCCESS:
             return { loading: false, pdfUrl: action.payload };
         case FACTURA_DETAILS_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const facturaGeneratePdfReducer = (state = {}, action) => {
+    switch (action.type) {
+        case FACTURA_GENERATE_PDF_REQUEST:
+            return { loading: true };
+        case FACTURA_GENERATE_PDF_SUCCESS:
+            return { loading: false, success: true };
+        case FACTURA_GENERATE_PDF_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
