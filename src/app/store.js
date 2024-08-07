@@ -12,9 +12,9 @@ import {
     userResetPasswordReducer,
 } from '../reducers/userReducers';
 
-import {contactReducer} from '../reducers/contactReducers';
+import { contactReducer } from '../reducers/contactReducers';
 
-import { 
+import {
     usosParcelaListReducer,
     caracteristicasParcelaListReducer,
     contadoresParcelaListReducer,
@@ -22,17 +22,19 @@ import {
     datosAdicionalesParcelaListReducer,
     pagosParcelaListReducer,
 
- } from '../reducers/parcelaReducers';
+} from '../reducers/parcelaReducers';
 
- import {
+import {
     comunidadDetailsReducer,
     comunidadUpdateProfileReducer
 
- }from '../reducers/communityReducers';
+} from '../reducers/communityReducers';
 
- import {
+import {
+    plotAddReducer,
     plotListReducer,
- } from '../reducers/plotReducer';
+} from '../reducers/plotReducer';
+
 import { cultivoDetailsReducer, cultivoListReducer, faseCultivoDetailsReducer } from '../reducers/cultivoReducers';
 import { documentoListReducer, documentoCreateReducer, documentoDetailsReducer } from '../reducers/documentReducers';
 import { peticionCreateReducer, peticionListReducer } from '../reducers/peticionReducers';
@@ -71,6 +73,7 @@ const reducer = combineReducers({
     facturaList: facturaListReducer,
     facturaDetails: facturaDetailsReducer,
     facturaGeneratePdf: facturaGeneratePdfReducer,
+    plotAdd: plotAddReducer,
 
 });
 

@@ -10,6 +10,7 @@ import DatosPersonales from '../components/DatosPersonales';
 import DatosBancarios from '../components/DatosBancarios';
 import SidebarUsers from '../components/SidebarUsers';
 import Mapa from '../components/Mapa';
+import AddPlot from '../components/AddPlot';
 
 const DatosAguaScreen = () => {
     const [perfilData, setPerfilData] = useState({});
@@ -74,7 +75,9 @@ const DatosAguaScreen = () => {
                                 Actualizar
                             </Button>
                         )}
+                        <hr />
                         <Mapa />
+                        <AddPlot />
                     </>
                 ) : (
                     <Message variant="warning">No se encontraron datos del usuario.</Message>
